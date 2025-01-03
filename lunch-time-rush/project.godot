@@ -21,7 +21,11 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ninetailsrabbit.character_generator_importer_tool/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/ninetailsrabbit.character_generator_importer_tool/plugin.cfg")
+
+[global_group]
+
+Player=""
 
 [input]
 
