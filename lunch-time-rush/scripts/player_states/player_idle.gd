@@ -2,13 +2,14 @@ extends State
 
 @export var animator : AnimationPlayer
 
-var player: CharacterBody2D
+var player: Player
 
 func Enter():
 	print_debug("idle")
 	player = get_tree().get_first_node_in_group("Player")
-	print_debug(player.direction)
-	match player.direction:
+
+# Animation
+	match player.player_direction:
 		Vector2.LEFT:
 			animator.play("idle_left")
 		Vector2.RIGHT:

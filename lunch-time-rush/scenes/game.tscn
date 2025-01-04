@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7tc3r3yaq5pb"]
+[gd_scene load_steps=4 format=3 uid="uid://b7tc3r3yaq5pb"]
 
-[ext_resource type="PackedScene" uid="uid://cfmw0hbe7jubh" path="res://scenes/player.tscn" id="1_wwqcs"]
+[ext_resource type="Script" path="res://scenes/game_scene.gd" id="1_qe86l"]
+[ext_resource type="PackedScene" uid="uid://cfmw0hbe7jubh" path="res://scenes/entities/player.tscn" id="1_wwqcs"]
+
+[sub_resource type="Curve2D" id="Curve2D_2e36l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -198, 60, 0, 0, 0, 0, -101, 60, 0, 0, 0, 0, -101, -78, 0, 0, 0, 0, 101, -78, 0, 0, 0, 0, 101, 94, 0, 0, 0, 0, -149, 94, 0, 0, 0, 0, -149, -93, 0, 0, 0, 0, 146, -93)
+}
+point_count = 8
 
 [node name="game" type="Node2D"]
+script = ExtResource("1_qe86l")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
 [node name="Player" parent="." instance=ExtResource("1_wwqcs")]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2e36l")

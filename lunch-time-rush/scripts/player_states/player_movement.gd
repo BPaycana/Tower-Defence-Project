@@ -3,7 +3,7 @@ extends State
 @export var speed: float = 50
 @export var animator : AnimationPlayer
 
-var player: CharacterBody2D
+var player: Player
 var direction : Vector2
 
 func Enter():
@@ -18,9 +18,11 @@ func Update(delta : float):
 	
 	if direction:
 		player.velocity = direction * speed
+		player.player_direction = direction
 	else:
 		player.velocity = player.velocity.move_toward(Vector2.ZERO, speed)
 	player.move_and_slide()
+	
 
 #Animations
 	match direction:
