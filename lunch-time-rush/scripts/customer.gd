@@ -12,7 +12,6 @@ func _physics_process(delta: float) -> void:
 	var old_pos = position
 	await(get_tree().create_timer(0.1).timeout)
 	var direction = position - old_pos
-	print_debug(direction.normalized())
 	
 	match direction.normalized():
 		Vector2.LEFT:

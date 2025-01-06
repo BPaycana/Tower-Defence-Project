@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7tc3r3yaq5pb"]
+[gd_scene load_steps=5 format=3 uid="uid://b7tc3r3yaq5pb"]
 
-[ext_resource type="Script" path="res://scenes/game_scene.gd" id="1_qe86l"]
+[ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_qe86l"]
 [ext_resource type="PackedScene" uid="uid://cfmw0hbe7jubh" path="res://scenes/entities/player.tscn" id="1_wwqcs"]
+[ext_resource type="PackedScene" uid="uid://yshcy3l3rqo5" path="res://scenes/towers/burger_tower.tscn" id="3_k8nck"]
 
 [sub_resource type="Curve2D" id="Curve2D_2e36l"]
 _data = {
@@ -16,6 +17,12 @@ script = ExtResource("1_qe86l")
 zoom = Vector2(3, 3)
 
 [node name="Player" parent="." instance=ExtResource("1_wwqcs")]
+
+[node name="BurgerTower" parent="." instance=ExtResource("3_k8nck")]
+position = Vector2(70, 0)
+
+[node name="BurgerTower2" parent="." instance=ExtResource("3_k8nck")]
+position = Vector2(-46, 0)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2e36l")

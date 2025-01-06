@@ -24,3 +24,6 @@ func Update(_delta:float):
 	
 	if(Input.get_vector("left","right","up","down").normalized()):
 		state_transition.emit(self, "movement")
+
+	if Input.is_action_just_pressed("pick_up"):
+		state_transition.emit(self, "pick_up")

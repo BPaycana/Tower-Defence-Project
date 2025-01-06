@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://yshcy3l3rqo5"]
+
+[ext_resource type="Texture2D" uid="uid://bgomwqdf3tpan" path="res://assets/Ghostpixxells PixelFood/15_burger.png" id="1_kelt2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ni6w7"]
+
+[node name="BurgerTower" type="Area2D" groups=["Towers"]]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_kelt2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ni6w7")
+
+[node name="TowerRange" type="Area2D" parent="."]
+y_sort_enabled = true
