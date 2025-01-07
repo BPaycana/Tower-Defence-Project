@@ -7,8 +7,8 @@ extends State
 var player: Player
 var direction : Vector2
 
-var pick_up_left = Vector2(-6, 1)
-var pick_up_right = Vector2(6, 1)
+var pick_up_left = Vector2(-6, 0)
+var pick_up_right = Vector2(6, 0)
 var pick_up_up = Vector2(0, 0)
 var pick_up_down = Vector2(0, 1)
 

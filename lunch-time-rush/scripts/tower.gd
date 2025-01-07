@@ -1,21 +1,48 @@
-extends CharacterBody2D
+extends Area2D
 
-#var player = CharacterBody2D
-#var picked_up = false
-#
-#@onready var tower_pick_up_range: Area2D = $TowerPickUpRange
-#
-#func _ready() -> void:
-	#player = get_tree().get_first_node_in_group("Player")
-	#
-#func _physics_process(delta: float) -> void:
-	#if picked_up == true:
-		#set_collision_layer_value(2, 0)
-		#self.position = player.get_node("PickUpPoint").global_position
-#
-#func _input(event: InputEvent) -> void:
-	#if Input.is_action_just_pressed("pick_up"):
-		#var bodies = tower_pick_up_range.get_overlapping_bodies()
-		#for body in bodies:
-			#if body.name == "Player":
-				#picked_up = true
+@onready var pivot: Node2D = $Pivot
+var enemy_array = []
+var enemy
+var ready_to_fire = true
+var damage = 1
+
+func _physics_process(delta: float) -> void:
+	if enemy_array.size() != 0:
+		select_enemy()
+		turn()
+		if ready_to_fire:
+			fire()
+	else:
+		enemy = null
+
+func turn():
+	pivot.look_at(enemy.position)
+	
+func select_enemy():
+	var enemy_progress_array = []
+	for i in enemy_array:
+		enemy_progress_array.append(i.progress)
+	var max_offset = enemy_progress_array.max()
+	var enemy_index = enemy_progress_array.find(max_offset)
+	enemy = enemy_array[enemy_index]
+
+func fire():
+	ready_to_fire = false
+	const food = preload("res://scenes/food.tscn")
+	var new_food = food.instantiate()
+	new_food.set_food(damage)
+	new_food.global_position = pivot.get_child(0).global_position
+	new_food.global_rotation = pivot.get_child(0).global_rotation
+	add_child(new_food)
+	
+	await get_tree().create_timer(2).timeout
+	ready_to_fire = true
+
+func _on_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Customer"):
+		enemy_array.append(body.get_parent())
+		print(enemy_array)
+
+func _on_range_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Customer"):
+		enemy_array.erase(body.get_parent())

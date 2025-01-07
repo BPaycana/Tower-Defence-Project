@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://cm3kemcvw5vxg"]
+[gd_scene load_steps=41 format=3 uid="uid://cm3kemcvw5vxg"]
 
 [ext_resource type="Script" path="res://scripts/customer.gd" id="1_th3ih"]
-[ext_resource type="Script" path="res://scripts/customer_skin.gd" id="2_h7311"]
 [ext_resource type="Texture2D" uid="uid://dicq6jaojo20r" path="res://assets/Modern tiles/Characters/Customer1.png" id="2_upxvr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3feoh"]
@@ -303,17 +302,17 @@ animations = [{
 radius = 8.0
 height = 24.0
 
-[node name="Customer" type="PathFollow2D"]
+[node name="Customer" type="PathFollow2D" groups=["Customer"]]
 rotates = false
 script = ExtResource("1_th3ih")
+speed = 20
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4xswj")
 animation = &"walk_right"
 frame_progress = 0.00599629
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("2_h7311")
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Customer"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 5)

@@ -11,6 +11,7 @@ _data = {
 point_count = 8
 
 [node name="game" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_qe86l")
 
 [node name="Camera2D" type="Camera2D" parent="."]

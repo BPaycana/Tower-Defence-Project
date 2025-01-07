@@ -8,6 +8,10 @@
 
 config_version=5
 
+[Lunch Time Rush]
+
+config/ninetailsrabbit.character_generator_importer_tool/update_notification_enabled=true
+
 [application]
 
 config/name="Lunch Time Rush"
@@ -27,6 +31,8 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/ninetail
 
 Player=""
 Towers=""
+Customer=""
+Food=""
 
 [input]
 

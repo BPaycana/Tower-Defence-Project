@@ -1,18 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://yshcy3l3rqo5"]
+[gd_scene load_steps=6 format=3 uid="uid://yshcy3l3rqo5"]
 
 [ext_resource type="Texture2D" uid="uid://bgomwqdf3tpan" path="res://assets/Ghostpixxells PixelFood/15_burger.png" id="1_kelt2"]
+[ext_resource type="Script" path="res://scripts/tower.gd" id="1_pepxi"]
+[ext_resource type="Texture2D" uid="uid://cnlm8olvtocia" path="res://assets/Towers/Tower.png" id="3_e7vip"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ni6w7"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1661t"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xhvkj"]
+radius = 72.0
 
 [node name="BurgerTower" type="Area2D" groups=["Towers"]]
 y_sort_enabled = true
+script = ExtResource("1_pepxi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-y_sort_enabled = true
+[node name="Food" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_kelt2")
+offset = Vector2(0, -12)
+
+[node name="Tower" type="Sprite2D" parent="Food"]
+show_behind_parent = true
+y_sort_enabled = true
+position = Vector2(0, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("3_e7vip")
+offset = Vector2(0, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ni6w7")
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_1661t")
 
-[node name="TowerRange" type="Area2D" parent="."]
+[node name="Range" type="Area2D" parent="."]
 y_sort_enabled = true
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_xhvkj")
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="Marker2D" type="Marker2D" parent="Pivot"]
+position = Vector2(10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Marker2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_kelt2")
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

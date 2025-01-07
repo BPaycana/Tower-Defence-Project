@@ -2,11 +2,11 @@ extends PathFollow2D
 
 @onready var sprites: AnimatedSprite2D = $Sprites
 
-var speed = 50
+@export var speed = 50
+@export var hp = 3
 
 func _physics_process(delta: float) -> void:
 	move(delta)
-
 
 # Animation
 	var old_pos = position
@@ -25,3 +25,12 @@ func _physics_process(delta: float) -> void:
 
 func move(delta):
 	set_progress(get_progress() + speed * delta)
+
+func on_hit(damage):
+	hp -= damage
+	print_debug(hp)
+	if hp <= 0:
+		destroy()
+
+func destroy():
+	queue_free()
