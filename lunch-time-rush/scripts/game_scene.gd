@@ -3,6 +3,7 @@ extends Node2D
 var current_wave = 0
 var enemies_in_wave = 0
 @export var burger: FoodType
+@export var fries: FoodType
 
 func _ready() -> void:
 	start_next_wave()
@@ -13,7 +14,7 @@ func start_next_wave():
 	spawn_enemies(wave_data)
 
 func retrieve_wave_data():
-	var wave_data = [[burger, 3],[burger, 4]]
+	var wave_data = [[burger, 3],[fries, 4]]
 	current_wave += 1
 	enemies_in_wave = wave_data.size()
 	return wave_data

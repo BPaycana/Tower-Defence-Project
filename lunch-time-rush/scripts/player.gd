@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 var player_direction : Vector2
 var pick_up = false
+var in_range = false
 var tower
 
 
@@ -15,14 +16,14 @@ var tower
 func _physics_process(delta: float) -> void:
 	
 #	Pick up tower
-	if  !pick_up && pick_up_range.has_overlapping_areas() && tower != null && Input.is_action_just_pressed("pick_up"):
+	if  !pick_up && in_range && tower != null && Input.is_action_just_pressed("pick_up"):
 		_pick_up(tower)
-		tower.ready_to_fire = false
+		tower.picked_up = true
 
 #	Drop down tower
 	if pick_up && Input.is_action_just_pressed("pick_up"):
 		_put_down(tower)
-		tower.ready_to_fire = true
+		tower.picked_up = false
 
 func _pick_up(tower):
 	
@@ -42,4 +43,9 @@ func _put_down(tower):
 
 func _on_pick_up_range_area_entered(area: Area2D) -> void:
 	if !pick_up && area.is_in_group("Towers"):
+		in_range = true
 		tower = area
+
+func _on_pick_up_range_area_exited(area: Area2D) -> void:
+	if area.is_in_group("Towers"):
+		in_range = false

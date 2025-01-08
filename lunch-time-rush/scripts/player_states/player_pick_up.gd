@@ -13,8 +13,6 @@ var pick_up_up = Vector2(0, 0)
 var pick_up_down = Vector2(0, 1)
 
 func Enter():
-	print_debug("pick_up")
-	print_debug(pick_up_point.position)
 	player = get_tree().get_first_node_in_group("Player")
 
 func Update(delta : float):

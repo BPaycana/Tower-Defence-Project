@@ -5,7 +5,6 @@ extends State
 var player: Player
 
 func Enter():
-	print_debug("idle")
 	player = get_tree().get_first_node_in_group("Player")
 
 # Animation
@@ -25,5 +24,5 @@ func Update(_delta:float):
 	if(Input.get_vector("left","right","up","down").normalized()):
 		state_transition.emit(self, "movement")
 
-	if Input.is_action_just_pressed("pick_up"):
+	if player.in_range && Input.is_action_just_pressed("pick_up"):
 		state_transition.emit(self, "pick_up")

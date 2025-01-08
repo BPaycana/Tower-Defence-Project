@@ -8,7 +8,6 @@ var player: Player
 var direction : Vector2
 
 func Enter():
-	print_debug("movement")
 	player = get_tree().get_first_node_in_group("Player")
 
 func Update(delta : float):
@@ -39,5 +38,5 @@ func Update(delta : float):
 	if direction.length() <= 0:
 		state_transition.emit(self, "idle")
 	
-	if player.pick_up_range.has_overlapping_areas() && Input.is_action_just_pressed("pick_up"):
+	if player.in_range && Input.is_action_just_pressed("pick_up"):
 		state_transition.emit(self, "pick_up")

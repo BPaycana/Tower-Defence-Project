@@ -13,7 +13,6 @@ var food_type = FoodType
 
 func _ready() -> void:
 	skin = int(randf_range(1, 3))
-	print_debug(food_type)
 	
 func _physics_process(delta: float) -> void:
 	move(delta)

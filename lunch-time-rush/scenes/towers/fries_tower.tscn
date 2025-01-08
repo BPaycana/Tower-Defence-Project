@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://yshcy3l3rqo5"]
+[gd_scene load_steps=7 format=3 uid="uid://kjie6qj0qqnm"]
 
-[ext_resource type="Texture2D" uid="uid://bgomwqdf3tpan" path="res://assets/Ghostpixxells PixelFood/15_burger.png" id="1_kelt2"]
-[ext_resource type="Script" path="res://scripts/tower.gd" id="1_pepxi"]
-[ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/Burger.tres" id="2_drl25"]
-[ext_resource type="Texture2D" uid="uid://cnlm8olvtocia" path="res://assets/Towers/Tower.png" id="3_e7vip"]
+[ext_resource type="Script" path="res://scripts/tower.gd" id="1_ywa7u"]
+[ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/Fries.tres" id="2_rqgvr"]
+[ext_resource type="Texture2D" uid="uid://mfah8j5y88m5" path="res://assets/Ghostpixxells PixelFood/44_frenchfries.png" id="3_7ifwq"]
+[ext_resource type="Texture2D" uid="uid://b6lm8d8dyruvf" path="res://assets/Towers/BlueTower.png" id="4_8ypne"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1661t"]
 radius = 8.0
@@ -12,16 +12,16 @@ height = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhvkj"]
 radius = 72.0
 
-[node name="BurgerTower" type="Area2D" groups=["Towers"]]
+[node name="FriesTower" type="Area2D" groups=["Towers"]]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("1_pepxi")
-food_type = ExtResource("2_drl25")
+script = ExtResource("1_ywa7u")
+food_type = ExtResource("2_rqgvr")
 
 [node name="Food" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_kelt2")
+texture = ExtResource("3_7ifwq")
 offset = Vector2(0, -12)
 
 [node name="Tower" type="Sprite2D" parent="Food"]
@@ -29,7 +29,7 @@ show_behind_parent = true
 y_sort_enabled = true
 position = Vector2(0, 10)
 scale = Vector2(2, 2)
-texture = ExtResource("3_e7vip")
+texture = ExtResource("4_8ypne")
 offset = Vector2(0, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -54,7 +54,7 @@ position = Vector2(10, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/Marker2D"]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_kelt2")
+texture = ExtResource("3_7ifwq")
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

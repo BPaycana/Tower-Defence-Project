@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7tc3r3yaq5pb"]
+[gd_scene load_steps=8 format=3 uid="uid://b7tc3r3yaq5pb"]
 
 [ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_qe86l"]
 [ext_resource type="PackedScene" uid="uid://cfmw0hbe7jubh" path="res://scenes/entities/player.tscn" id="1_wwqcs"]
 [ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/Burger.tres" id="2_btel2"]
 [ext_resource type="PackedScene" uid="uid://yshcy3l3rqo5" path="res://scenes/towers/burger_tower.tscn" id="3_k8nck"]
+[ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/Fries.tres" id="3_yvjo0"]
+[ext_resource type="PackedScene" uid="uid://kjie6qj0qqnm" path="res://scenes/towers/fries_tower.tscn" id="6_5ui80"]
 
 [sub_resource type="Curve2D" id="Curve2D_2e36l"]
 _data = {
@@ -15,6 +17,7 @@ point_count = 8
 y_sort_enabled = true
 script = ExtResource("1_qe86l")
 burger = ExtResource("2_btel2")
+fries = ExtResource("3_yvjo0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -23,10 +26,9 @@ zoom = Vector2(3, 3)
 
 [node name="BurgerTower" parent="." instance=ExtResource("3_k8nck")]
 position = Vector2(70, 0)
-food_type = ExtResource("2_btel2")
 
-[node name="BurgerTower2" parent="." instance=ExtResource("3_k8nck")]
-position = Vector2(-46, 0)
+[node name="FriesTower" parent="." instance=ExtResource("6_5ui80")]
+position = Vector2(-61, -2)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2e36l")
