@@ -17,10 +17,12 @@ func _physics_process(delta: float) -> void:
 #	Pick up tower
 	if  !pick_up && pick_up_range.has_overlapping_areas() && tower != null && Input.is_action_just_pressed("pick_up"):
 		_pick_up(tower)
+		tower.ready_to_fire = false
 
 #	Drop down tower
 	if pick_up && Input.is_action_just_pressed("pick_up"):
 		_put_down(tower)
+		tower.ready_to_fire = true
 
 func _pick_up(tower):
 	

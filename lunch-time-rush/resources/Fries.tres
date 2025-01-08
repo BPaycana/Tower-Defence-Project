@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FoodType" load_steps=2 format=3 uid="uid://bnn7x4h2uv20p"]
+
+[ext_resource type="Script" path="res://scripts/food_type.gd" id="1_alnxp"]
+
+[resource]
+script = ExtResource("1_alnxp")
+name = "Fries"

@@ -5,32 +5,69 @@ extends PathFollow2D
 @export var speed = 50
 @export var hp = 3
 
+var skin: int
+
+var direction
+var anim_finished = true
+var food_type = FoodType
+
+func _ready() -> void:
+	skin = int(randf_range(1, 3))
+	print_debug(food_type)
+	
 func _physics_process(delta: float) -> void:
 	move(delta)
 
 # Animation
 	var old_pos = position
 	await(get_tree().create_timer(0.1).timeout)
-	var direction = position - old_pos
+	direction = position - old_pos
 	
 	match direction.normalized():
 		Vector2.LEFT:
-			sprites.play("walk_left")
+			if anim_finished:
+				sprites.play("walk_left" + str(skin))
 		Vector2.RIGHT:
-			sprites.play("walk_right")
+			if anim_finished:
+				sprites.play("walk_right" + str(skin))
 		Vector2.DOWN:
-			sprites.play("walk_down")
+			if anim_finished:
+				sprites.play("walk_down" + str(skin))
 		Vector2.UP:
-			sprites.play("walk_up")
+			if anim_finished:
+				sprites.play("walk_up" + str(skin))
 
 func move(delta):
 	set_progress(get_progress() + speed * delta)
 
-func on_hit(damage):
-	hp -= damage
+func on_hit(_food_type, _damage):
+	if _food_type == food_type:
+		hp -= _damage
+		anim_finished = false
+		match direction.normalized():
+			Vector2.LEFT:
+				sprites.play("hurt_left" + str(skin))
+				sprites.animation_finished
+			Vector2.RIGHT:
+				sprites.play("hurt_right" + str(skin))
+				sprites.animation_finished
+			Vector2.DOWN:
+				sprites.play("hurt_down" + str(skin))
+				sprites.animation_finished
+			Vector2.UP:
+				sprites.play("hurt_up" + str(skin))
+				sprites.animation_finished
+
 	print_debug(hp)
 	if hp <= 0:
 		destroy()
 
 func destroy():
 	queue_free()
+
+func _on_sprites_animation_finished() -> void:
+	anim_finished = true
+
+func set_customer(_food_type: FoodType, _food_amount: int):
+	food_type = _food_type
+	hp = _food_amount
