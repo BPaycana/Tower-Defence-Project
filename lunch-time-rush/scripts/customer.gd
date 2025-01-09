@@ -57,7 +57,6 @@ func on_hit(_food_type, _damage):
 				sprites.play("hurt_up" + str(skin))
 				sprites.animation_finished
 
-	print_debug(hp)
 	if hp <= 0:
 		destroy()
 

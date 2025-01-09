@@ -40,3 +40,6 @@ func Update(delta : float):
 	
 	if player.in_range && Input.is_action_just_pressed("pick_up"):
 		state_transition.emit(self, "pick_up")
+	
+	if player.has_food:
+		state_transition.emit(self, "pick_up")

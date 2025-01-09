@@ -9,7 +9,7 @@ var direction : Vector2
 
 var pick_up_left = Vector2(-6, 0)
 var pick_up_right = Vector2(6, 0)
-var pick_up_up = Vector2(0, 0)
+var pick_up_up = Vector2(0, -1)
 var pick_up_down = Vector2(0, 1)
 
 func Enter():
@@ -45,4 +45,5 @@ func Update(delta : float):
 			pick_up_point.position = pick_up_up
 
 	if Input.is_action_just_pressed("pick_up"):
+		await get_tree().create_timer(0.1).timeout
 		state_transition.emit(self, "movement")

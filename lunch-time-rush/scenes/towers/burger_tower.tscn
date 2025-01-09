@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://yshcy3l3rqo5"]
+[gd_scene load_steps=8 format=3 uid="uid://yshcy3l3rqo5"]
 
 [ext_resource type="Texture2D" uid="uid://bgomwqdf3tpan" path="res://assets/Ghostpixxells PixelFood/15_burger.png" id="1_kelt2"]
 [ext_resource type="Script" path="res://scripts/tower.gd" id="1_pepxi"]
 [ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/Burger.tres" id="2_drl25"]
 [ext_resource type="Texture2D" uid="uid://cnlm8olvtocia" path="res://assets/Towers/Tower.png" id="3_e7vip"]
+[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar.tscn" id="5_oamuw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1661t"]
 radius = 8.0
@@ -18,11 +19,12 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_pepxi")
 food_type = ExtResource("2_drl25")
+food_max = 5
 
 [node name="Food" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_kelt2")
-offset = Vector2(0, -12)
+offset = Vector2(0, -13)
 
 [node name="Tower" type="Sprite2D" parent="Food"]
 show_behind_parent = true
@@ -30,7 +32,7 @@ y_sort_enabled = true
 position = Vector2(0, 10)
 scale = Vector2(2, 2)
 texture = ExtResource("3_e7vip")
-offset = Vector2(0, -5)
+offset = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -55,6 +57,10 @@ position = Vector2(10, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/Marker2D"]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_kelt2")
+
+[node name="FoodBar" parent="." instance=ExtResource("5_oamuw")]
+offset_left = -2.0
+offset_right = 2.0
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

@@ -8,10 +8,6 @@
 
 config_version=5
 
-[Lunch Time Rush]
-
-config/ninetailsrabbit.character_generator_importer_tool/update_notification_enabled=true
-
 [application]
 
 config/name="Lunch Time Rush"
@@ -33,6 +29,7 @@ Player=""
 Towers=""
 Customer=""
 Food=""
+"Food Station"=""
 
 [input]
 
@@ -70,6 +67,7 @@ pick_up={
 2d_physics/layer_2="Towers"
 2d_physics/layer_3="Customer"
 2d_physics/layer_4="Food"
+2d_physics/layer_5="Food Station"
 
 [rendering]
 

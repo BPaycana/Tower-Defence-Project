@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7tc3r3yaq5pb"]
+[gd_scene load_steps=9 format=3 uid="uid://b7tc3r3yaq5pb"]
 
 [ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_qe86l"]
 [ext_resource type="PackedScene" uid="uid://cfmw0hbe7jubh" path="res://scenes/entities/player.tscn" id="1_wwqcs"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://yshcy3l3rqo5" path="res://scenes/towers/burger_tower.tscn" id="3_k8nck"]
 [ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/Fries.tres" id="3_yvjo0"]
 [ext_resource type="PackedScene" uid="uid://kjie6qj0qqnm" path="res://scenes/towers/fries_tower.tscn" id="6_5ui80"]
+[ext_resource type="PackedScene" uid="uid://dpxi0htvf74e" path="res://scenes/objects/food_station.tscn" id="7_o76pg"]
 
 [sub_resource type="Curve2D" id="Curve2D_2e36l"]
 _data = {
@@ -32,3 +33,6 @@ position = Vector2(-61, -2)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2e36l")
+
+[node name="FoodStation" parent="." instance=ExtResource("7_o76pg")]
+position = Vector2(0, -67)
