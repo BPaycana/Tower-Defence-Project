@@ -13,20 +13,27 @@ var pick_up_up = Vector2(0, -1)
 var pick_up_down = Vector2(0, 1)
 
 func Enter():
+	# Assigns player
 	player = get_tree().get_first_node_in_group("Player")
+	pick_up_animation()
 
-func Update(delta : float):
+
+func Update(_delta : float):
+	if not player.anim_finished:
+		return
 
 #Movement
-	direction.x = Input.get_axis("left","right")
-	direction.y = Input.get_axis("up","down")
-	
-	if direction:
-		player.velocity = direction * speed
-		player.player_direction = direction
-	else:
-		player.velocity = player.velocity.move_toward(Vector2.ZERO, speed)
-	player.move_and_slide()
+	if player.anim_finished:
+		direction.x = Input.get_axis("left","right")
+		direction.y = Input.get_axis("up","down")
+		
+		if direction:
+			player.velocity = direction * speed
+			player.player_direction = direction
+			player.move_and_slide()
+		else:
+			player.velocity = player.velocity.move_toward(Vector2.ZERO, speed)
+		
 	
 
 #Animations
@@ -43,7 +50,29 @@ func Update(delta : float):
 		Vector2.UP:
 			animator.play("walk_with_object_up")
 			pick_up_point.position = pick_up_up
+		Vector2.DOWN + Vector2.LEFT:
+			animator.play("walk_with_object_down")
+			pick_up_point.position = pick_up_down
+		Vector2.DOWN + Vector2.RIGHT:
+			animator.play("walk_with_object_down")
+			pick_up_point.position = pick_up_down
+		Vector2.UP + Vector2.LEFT:
+			animator.play("walk_with_object_up")
+			pick_up_point.position = pick_up_up
+		Vector2.UP + Vector2.LEFT:
+			animator.play("walk_with_object_up")
+			pick_up_point.position = pick_up_up
 
-	if Input.is_action_just_pressed("pick_up"):
+	if !player.has_food && !player.pick_up:
 		await get_tree().create_timer(0.1).timeout
 		state_transition.emit(self, "movement")
+	
+
+func pick_up_animation():
+
+	#Plays pick up animation
+	pick_up_point.position = pick_up_up
+	player.anim_finished = false
+	animator.play("grab_object_up", -1, 2.0)
+	await animator.animation_finished
+	player.anim_finished = true

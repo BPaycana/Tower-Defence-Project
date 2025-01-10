@@ -8,7 +8,7 @@ var my_scene: PackedScene = load("res://scenes/food.tscn")
 @onready var drink: Sprite2D = $Drink
 
 @export var speed: float
-@export var range: float
+@export var delete_range: float
 
 var food_type: FoodType
 var travelledDistance = 0
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 	
 	travelledDistance += speed * delta
-	if travelledDistance > range:
+	if travelledDistance > delete_range:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:

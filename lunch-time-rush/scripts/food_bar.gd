@@ -7,5 +7,5 @@ func _ready() -> void:
 	min_value = parent.food_min
 	max_value = parent.food_max
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	self.value = parent.food_amount

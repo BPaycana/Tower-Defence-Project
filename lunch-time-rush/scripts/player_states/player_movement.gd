@@ -10,7 +10,7 @@ var direction : Vector2
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 
-func Update(delta : float):
+func Update(_delta : float):
 	
 #Movement
 	direction.x = Input.get_axis("left","right")
@@ -41,5 +41,5 @@ func Update(delta : float):
 	if player.in_range && Input.is_action_just_pressed("pick_up"):
 		state_transition.emit(self, "pick_up")
 	
-	if player.has_food:
+	if player.has_food || player.pick_up:
 		state_transition.emit(self, "pick_up")

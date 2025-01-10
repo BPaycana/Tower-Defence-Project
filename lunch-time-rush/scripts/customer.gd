@@ -46,16 +46,20 @@ func on_hit(_food_type, _damage):
 		match direction.normalized():
 			Vector2.LEFT:
 				sprites.play("hurt_left" + str(skin))
-				sprites.animation_finished
+				await sprites.animation_finished
+				anim_finished = true
 			Vector2.RIGHT:
 				sprites.play("hurt_right" + str(skin))
-				sprites.animation_finished
+				await sprites.animation_finished
+				anim_finished = true
 			Vector2.DOWN:
 				sprites.play("hurt_down" + str(skin))
-				sprites.animation_finished
+				await sprites.animation_finished
+				anim_finished = true
 			Vector2.UP:
 				sprites.play("hurt_up" + str(skin))
-				sprites.animation_finished
+				await sprites.animation_finished
+				anim_finished = true
 
 	if hp <= 0:
 		destroy()
@@ -63,8 +67,8 @@ func on_hit(_food_type, _damage):
 func destroy():
 	queue_free()
 
-func _on_sprites_animation_finished() -> void:
-	anim_finished = true
+#func _on_sprites_animation_finished() -> void:
+	#anim_finished = true
 
 func set_customer(_food_type: FoodType, _food_amount: int):
 	food_type = _food_type

@@ -21,8 +21,11 @@ func Enter():
 
 func Update(_delta:float):
 	
-	if(Input.get_vector("left","right","up","down").normalized()):
+	if(Input.get_vector("left","right","up","down").normalized()) && player.anim_finished:
 		state_transition.emit(self, "movement")
+	
+	if player.has_food:
+		state_transition.emit(self, "pick_up")
 
-	if player.in_range && Input.is_action_just_pressed("pick_up"):
+	if player.in_range && Input.is_action_just_pressed("pick_up") && player.anim_finished:
 		state_transition.emit(self, "pick_up")

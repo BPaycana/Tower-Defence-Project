@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var pick_up_point: Marker2D = $PickUpPoint
 @onready var pick_up_range: Area2D = $PickUpRange
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var box: Sprite2D = $PickUpPoint/Box
 
@@ -12,14 +13,9 @@ var in_range = false
 var has_food = false
 var food_box
 var tower
+var anim_finished = true
 
-
-
-#func _ready() -> void:
-	#animation_tree.set("parameters/Idle/blend_position", starting_direction)
-
-func _physics_process(delta: float) -> void:
-	
+func _physics_process(_delta: float) -> void:
 #	Pick up tower
 	if  !pick_up && in_range && tower != null && Input.is_action_just_pressed("pick_up") && !has_food:
 		_pick_up(tower)
@@ -34,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		_put_down(tower)
 		tower.picked_up = false
 
-func _pick_up(tower):
+func _pick_up(_pick_up_tower):
 	#Reparents the tower and sets its position on the player
 	tower.call_deferred("reparent", self.pick_up_point)
 	tower.position = pick_up_point.global_position
@@ -43,24 +39,23 @@ func _pick_up(tower):
 	pick_up = true
 
 func _pick_up_food():
-	box.set_visible(true)
-	has_food = true
-	
+	if !in_range:
+		box.set_visible(true)
+		has_food = true
 
-func _put_down(tower):
+func _put_down(_put_down_tower):
 	#Unparents the tower
 	tower.call_deferred("reparent", self.get_parent())
 
 	await get_tree().create_timer(0.1).timeout
 	pick_up = false
 
-func refill(tower):
+func refill(_refill_tower):
 	#Refills the tower's food amount
 	tower.food_amount = tower.food_max
 	box.set_visible(false)
 	has_food = false
 	pick_up = false
-
 
 func _on_pick_up_range_area_entered(area: Area2D) -> void:
 	if !pick_up && area.is_in_group("Towers"):

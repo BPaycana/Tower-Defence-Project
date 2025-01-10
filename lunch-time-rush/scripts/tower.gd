@@ -18,7 +18,7 @@ var food_min: int = 0
 func _ready() -> void:
 	food_amount = food_max
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 
 	if enemy_array.size() != 0:
 		select_enemy()
@@ -62,7 +62,6 @@ func _on_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Customer"):
 		if body.get_parent().food_type == food_type:
 			enemy_array.append(body.get_parent())
-			print(enemy_array)
 
 func _on_range_body_exited(body: Node2D) -> void:
 	#Removes enemy in area array

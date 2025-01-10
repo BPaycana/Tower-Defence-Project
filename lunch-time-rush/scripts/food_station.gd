@@ -6,7 +6,7 @@ var is_in_food_station = false
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pick_up") && is_in_food_station && !player.pick_up:
 		player._pick_up_food()
 
