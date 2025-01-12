@@ -38,7 +38,7 @@ func Update(_delta : float):
 	if direction.length() <= 0:
 		state_transition.emit(self, "idle")
 	
-	if player.in_range && Input.is_action_just_pressed("pick_up"):
+	if player.tower_in_range && Input.is_action_just_pressed("pick_up"):
 		state_transition.emit(self, "pick_up")
 	
 	if player.has_food || player.pick_up:

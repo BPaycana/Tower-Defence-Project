@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7tc3r3yaq5pb"]
+[gd_scene load_steps=11 format=3 uid="uid://b7tc3r3yaq5pb"]
 
 [ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_qe86l"]
 [ext_resource type="PackedScene" uid="uid://cfmw0hbe7jubh" path="res://scenes/entities/player.tscn" id="1_wwqcs"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://yshcy3l3rqo5" path="res://scenes/towers/burger_tower.tscn" id="3_k8nck"]
 [ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/Fries.tres" id="3_yvjo0"]
 [ext_resource type="PackedScene" uid="uid://kjie6qj0qqnm" path="res://scenes/towers/fries_tower.tscn" id="6_5ui80"]
+[ext_resource type="PackedScene" uid="uid://c0bjrnwutthgg" path="res://scenes/towers/drink_tower.tscn" id="7_ab3wl"]
 [ext_resource type="PackedScene" uid="uid://dpxi0htvf74e" path="res://scenes/objects/food_station.tscn" id="7_o76pg"]
+[ext_resource type="PackedScene" uid="uid://c0c72ojsp1gku" path="res://scenes/anchor.tscn" id="7_yxei0"]
 
 [sub_resource type="Curve2D" id="Curve2D_2e36l"]
 _data = {
@@ -21,7 +23,7 @@ burger = ExtResource("2_btel2")
 fries = ExtResource("3_yvjo0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(3.5, 3.5)
 
 [node name="Player" parent="." instance=ExtResource("1_wwqcs")]
 
@@ -29,10 +31,19 @@ zoom = Vector2(3, 3)
 position = Vector2(70, 0)
 
 [node name="FriesTower" parent="." instance=ExtResource("6_5ui80")]
-position = Vector2(-61, -2)
+position = Vector2(-27, 28)
+
+[node name="Anchor" parent="." instance=ExtResource("7_yxei0")]
+position = Vector2(-76, -30)
+
+[node name="Anchor2" parent="." instance=ExtResource("7_yxei0")]
+position = Vector2(-76, 35)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2e36l")
 
 [node name="FoodStation" parent="." instance=ExtResource("7_o76pg")]
 position = Vector2(0, -67)
+
+[node name="DrinkTower" parent="." instance=ExtResource("7_ab3wl")]
+position = Vector2(-29, -33)

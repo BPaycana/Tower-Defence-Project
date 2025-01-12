@@ -14,7 +14,7 @@ func start_next_wave():
 	spawn_enemies(wave_data)
 
 func retrieve_wave_data():
-	var wave_data = [[burger, 3],[fries, 4]]
+	var wave_data = [[fries, 3, false],[fries, 4, true]]
 	current_wave += 1
 	enemies_in_wave = wave_data.size()
 	return wave_data
@@ -22,6 +22,6 @@ func retrieve_wave_data():
 func spawn_enemies(wave_data):
 	for i in wave_data:
 		var new_enemy = load("res://scenes/entities/customer.tscn").instantiate()
-		new_enemy.set_customer(i[0], i[1])
+		new_enemy.set_customer(i[0], i[1], i[2])
 		get_node("Path2D").add_child(new_enemy)
 		await(get_tree().create_timer(2)).timeout

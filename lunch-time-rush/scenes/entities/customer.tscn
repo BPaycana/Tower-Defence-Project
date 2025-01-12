@@ -1,10 +1,12 @@
-[gd_scene load_steps=165 format=3 uid="uid://cm3kemcvw5vxg"]
+[gd_scene load_steps=176 format=3 uid="uid://cm3kemcvw5vxg"]
 
 [ext_resource type="Script" path="res://scripts/customer.gd" id="1_th3ih"]
 [ext_resource type="Texture2D" uid="uid://oufp4r2p15fw" path="res://assets/Modern tiles/Characters/Customers/Customer1.png" id="2_22qjd"]
 [ext_resource type="Texture2D" uid="uid://dicq6jaojo20r" path="res://assets/Modern tiles/Characters/Customer1.png" id="2_upxvr"]
 [ext_resource type="Texture2D" uid="uid://coyd3los24afj" path="res://assets/Modern tiles/Characters/Customers/Customer2.png" id="3_u3rhg"]
 [ext_resource type="Texture2D" uid="uid://bgxprbvc8vtxr" path="res://assets/Modern tiles/Characters/Customer2.png" id="5_1f3xu"]
+[ext_resource type="PackedScene" uid="uid://chdsg0rcv5fmi" path="res://scenes/ui/food_bubble.tscn" id="6_fs8qu"]
+[ext_resource type="Texture2D" uid="uid://cd5k3j65f26dh" path="res://assets/Modern tiles/UI/UI_thinking_emotes_animation_48x48.png" id="7_500n6"]
 
 [sub_resource type="Animation" id="Animation_kjtxh"]
 length = 0.428571
@@ -454,8 +456,41 @@ tracks/1/keys = {
 "values": ["walk_up2"]
 }
 
+[sub_resource type="Animation" id="Animation_l6mat"]
+resource_name = "satisfied"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emotes:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.45, 0.45), Vector2(0.55, 0.55), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_04ag0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emotes:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gvghq"]
 _data = {
+"RESET": SubResource("Animation_04ag0"),
 "hurt_down1": SubResource("Animation_kjtxh"),
 "hurt_down2": SubResource("Animation_xmwvd"),
 "hurt_left1": SubResource("Animation_ikd4x"),
@@ -464,6 +499,7 @@ _data = {
 "hurt_right2": SubResource("Animation_0pkxp"),
 "hurt_up1": SubResource("Animation_iamus"),
 "hurt_up2": SubResource("Animation_217hh"),
+"satisfied": SubResource("Animation_l6mat"),
 "walk_down1": SubResource("Animation_md4la"),
 "walk_down2": SubResource("Animation_rlc3m"),
 "walk_left1": SubResource("Animation_r201l"),
@@ -1631,15 +1667,68 @@ animations = [{
 radius = 8.0
 height = 24.0
 
-[node name="Customer" type="PathFollow2D" groups=["Customer"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_38j5o"]
+atlas = ExtResource("7_500n6")
+region = Rect2(0, 96, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dc1w"]
+atlas = ExtResource("7_500n6")
+region = Rect2(48, 96, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2frv5"]
+atlas = ExtResource("7_500n6")
+region = Rect2(96, 96, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6sl2"]
+atlas = ExtResource("7_500n6")
+region = Rect2(144, 96, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hej5"]
+atlas = ExtResource("7_500n6")
+region = Rect2(192, 96, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o0lq"]
+atlas = ExtResource("7_500n6")
+region = Rect2(240, 96, 48, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_38nke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38j5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dc1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2frv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6sl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hej5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o0lq")
+}],
+"loop": false,
+"name": &"satisfied",
+"speed": 5.0
+}]
+
+[node name="Customer" type="PathFollow2D" node_paths=PackedStringArray("food_amount", "container") groups=["Customer"]]
 rotates = false
 script = ExtResource("1_th3ih")
 speed = 20
+food_amount = NodePath("FoodBubble/FoodAmount")
+container = NodePath("FoodBubble/VBoxContainer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gvghq")
 }
+autoplay = "satisfied"
 
 [node name="Customer1" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -1653,7 +1742,7 @@ animation = &"hurt_down2"
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4xswj")
-animation = &"hurt_right2"
+animation = &"walk_down1"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Customer"]]
 collision_layer = 4
@@ -1663,4 +1752,16 @@ collision_mask = 10
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_t4jlp")
 
+[node name="FoodBubble" parent="." instance=ExtResource("6_fs8qu")]
+position = Vector2(9, -17)
+
+[node name="Emotes" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(9, -17)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_38nke")
+animation = &"satisfied"
+
 [connection signal="animation_finished" from="Sprites" to="." method="_on_sprites_animation_finished"]
+
+[editable path="FoodBubble"]

@@ -32,6 +32,11 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
+	if food_type.name == "Drink":
+		if body.is_in_group("Customer") && body.get_parent().has_drink:
+			body.get_parent().on_hit(food_type ,food_damage)
+			queue_free()
+
 	if body.is_in_group("Customer") && body.get_parent().food_type == food_type:
 		body.get_parent().on_hit(food_type ,food_damage)
 		queue_free()

@@ -3,6 +3,8 @@ extends Area2D
 @onready var pivot: Node2D = $Pivot
 @export var food_type: FoodType
 
+var anchor
+
 var enemy_array = []
 var enemy
 
@@ -19,7 +21,8 @@ func _ready() -> void:
 	food_amount = food_max
 
 func _physics_process(_delta: float) -> void:
-
+	print_debug(anchor)
+	
 	if enemy_array.size() != 0:
 		select_enemy()
 		turn()
@@ -41,6 +44,8 @@ func select_enemy():
 	var max_offset = enemy_progress_array.max()
 	var enemy_index = enemy_progress_array.find(max_offset)
 	enemy = enemy_array[enemy_index]
+	if enemy.is_satisfied == true:
+		enemy_array.erase(enemy)
 
 func fire():
 	#Fires food at enemy
@@ -60,11 +65,18 @@ func fire():
 func _on_range_body_entered(body: Node2D) -> void:
 	#Adds enemy in area to array
 	if body.is_in_group("Customer"):
-		if body.get_parent().food_type == food_type:
+		if body.get_parent().has_drink == true && body.get_parent().is_satisfied == false:
+			enemy_array.append(body.get_parent())
+		
+		if body.get_parent().food_type == food_type && body.get_parent().is_satisfied == false:
 			enemy_array.append(body.get_parent())
 
 func _on_range_body_exited(body: Node2D) -> void:
 	#Removes enemy in area array
 	if body.is_in_group("Customer"):
+
 		if body.get_parent().food_type == food_type:
+			enemy_array.erase(body.get_parent())
+		
+		if body.get_parent().has_drink == true:
 			enemy_array.erase(body.get_parent())

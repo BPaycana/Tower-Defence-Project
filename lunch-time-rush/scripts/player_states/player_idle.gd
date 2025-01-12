@@ -27,5 +27,5 @@ func Update(_delta:float):
 	if player.has_food:
 		state_transition.emit(self, "pick_up")
 
-	if player.in_range && Input.is_action_just_pressed("pick_up") && player.anim_finished:
+	if player.tower_in_range && Input.is_action_just_pressed("pick_up") && player.anim_finished:
 		state_transition.emit(self, "pick_up")

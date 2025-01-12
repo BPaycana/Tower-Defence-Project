@@ -9,24 +9,26 @@ extends CharacterBody2D
 
 var player_direction : Vector2
 var pick_up = false
-var in_range = false
+var tower_in_range = false
+var anchor_in_range = false
 var has_food = false
 var food_box
 var tower
+var anchor
 var anim_finished = true
 
 func _physics_process(_delta: float) -> void:
 #	Pick up tower
-	if  !pick_up && in_range && tower != null && Input.is_action_just_pressed("pick_up") && !has_food:
+	if  !pick_up && tower_in_range && tower != null && Input.is_action_just_pressed("pick_up") && !has_food:
 		_pick_up(tower)
 		tower.picked_up = true
 
 #	Refill tower
-	if !pick_up && in_range && tower != null && Input.is_action_just_pressed("pick_up") && has_food:
+	if !pick_up && tower_in_range && tower != null && Input.is_action_just_pressed("pick_up") && has_food:
 		refill(tower)
 
 #	Drop down tower
-	if pick_up && Input.is_action_just_pressed("pick_up"):
+	if pick_up && Input.is_action_just_pressed("pick_up") && anchor_in_range:
 		_put_down(tower)
 		tower.picked_up = false
 
@@ -35,20 +37,32 @@ func _pick_up(_pick_up_tower):
 	tower.call_deferred("reparent", self.pick_up_point)
 	tower.position = pick_up_point.global_position
 	
+	#Checks if the tower has an anchor already
+	if tower.anchor != null:
+		tower.anchor.occupied = false
+		tower.anchor = null
+	
 	await get_tree().create_timer(0.1).timeout
 	pick_up = true
-
-func _pick_up_food():
-	if !in_range:
-		box.set_visible(true)
-		has_food = true
 
 func _put_down(_put_down_tower):
 	#Unparents the tower
 	tower.call_deferred("reparent", self.get_parent())
-
+	
+	#Sets position to the anchor
+	tower.global_position = Vector2(anchor.global_position.x, anchor.global_position.y - 10)
+	
+	#Assigns the tower an anchor
+	tower.anchor = anchor
+	anchor.occupied = true
+	
 	await get_tree().create_timer(0.1).timeout
 	pick_up = false
+
+func _pick_up_food():
+	if !tower_in_range:
+		box.set_visible(true)
+		has_food = true
 
 func refill(_refill_tower):
 	#Refills the tower's food amount
@@ -59,9 +73,18 @@ func refill(_refill_tower):
 
 func _on_pick_up_range_area_entered(area: Area2D) -> void:
 	if !pick_up && area.is_in_group("Towers"):
-		in_range = true
+		tower_in_range = true
 		tower = area
+	
+	if area.is_in_group("Anchor"):
+		if !area.occupied:
+			anchor_in_range = true
+			anchor = area
+		
 
 func _on_pick_up_range_area_exited(area: Area2D) -> void:
 	if area.is_in_group("Towers"):
-		in_range = false
+		tower_in_range = false
+	
+	if area.is_in_group("Anchor"):
+		anchor_in_range = false
