@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=5 format=3 uid="uid://dwdb7dtrs36em"]
+
+[ext_resource type="Script" path="res://scripts/wave_data.gd" id="1_pmgld"]
+[ext_resource type="Resource" uid="uid://1dqppxgb25fa" path="res://resources/customers/fries_drink.tres" id="1_ycty2"]
+[ext_resource type="Resource" uid="uid://cnhg7ts0upk6v" path="res://resources/customers/fries.tres" id="2_8vqkf"]
+[ext_resource type="Resource" uid="uid://br2vqyrus41s1" path="res://resources/customers/burger_drink.tres" id="3_6mcgv"]
+
+[resource]
+script = ExtResource("1_pmgld")
+customers = Array[Resource]([ExtResource("1_ycty2"), ExtResource("2_8vqkf"), ExtResource("3_6mcgv")])
+spawn_delay = 6.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=256 format=3 uid="uid://cfmw0hbe7jubh"]
+[gd_scene load_steps=257 format=3 uid="uid://cfmw0hbe7jubh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1edq5"]
 [ext_resource type="Texture2D" uid="uid://djyby7uodd2ou" path="res://assets/Modern tiles/Objects/Box.png" id="2_7qix4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/player_states/player_idle.gd" id="4_217td"]
 [ext_resource type="Script" path="res://scripts/player_states/player_movement.gd" id="5_ey5lj"]
 [ext_resource type="Script" path="res://scripts/player_states/player_pick_up.gd" id="6_auwry"]
+[ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="8_0mtsx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpa5f"]
 atlas = ExtResource("3_0ekcw")
@@ -2510,10 +2511,12 @@ animator = NodePath("../../AnimationPlayer")
 
 [node name="movement" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("5_ey5lj")
+speed = 100.0
 animator = NodePath("../../AnimationPlayer")
 
 [node name="pick_up" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator", "pick_up_point")]
 script = ExtResource("6_auwry")
+speed = 80.0
 animator = NodePath("../../AnimationPlayer")
 pick_up_point = NodePath("../../PickUpPoint")
 
@@ -2525,6 +2528,13 @@ collision_mask = 34
 position = Vector2(0, 4)
 scale = Vector2(0.9, 0.9)
 shape = SubResource("CapsuleShape2D_wl2db")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.329412)
+z_index = -2
+position = Vector2(0, 15)
+scale = Vector2(0.1, 0.06)
+texture = ExtResource("8_0mtsx")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/movement" method="_on_animation_player_animation_finished"]

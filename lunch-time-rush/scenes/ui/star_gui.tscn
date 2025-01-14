@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5yl7hpdrm62m"]
+
+[ext_resource type="Texture2D" uid="uid://dkg75clhba8h5" path="res://assets/UI/Stars.png" id="1_aer42"]
+[ext_resource type="Script" path="res://scripts/star_gui.gd" id="1_lbhd5"]
+
+[node name="StarGUI" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_lbhd5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aer42")
+centered = false
+hframes = 3

@@ -25,15 +25,23 @@ var has_drink = false
 
 var is_satisfied = false
 
+var level
+
 func _ready() -> void:
+	
+	level = get_parent().get_parent()
 	add_food_to_container()
 	food_amount.text = text_effect + str(hp)
 	skin = int(randf_range(1, 3))
 	
 func _physics_process(delta: float) -> void:
 	move(delta)
+	if progress_ratio >= 1:
+		delete()
 
-# Animation
+func move(delta):
+	set_progress(get_progress() + speed * delta)
+	
 	var old_pos = position
 	await(get_tree().create_timer(0.1).timeout)
 	direction = position - old_pos
@@ -51,9 +59,6 @@ func _physics_process(delta: float) -> void:
 		Vector2.UP:
 			if anim_finished:
 				sprites.play("walk_up" + str(skin))
-
-func move(delta):
-	set_progress(get_progress() + speed * delta)
 
 func on_hit(_food_type, _damage):
 	if !is_satisfied:
@@ -73,9 +78,18 @@ func on_hit(_food_type, _damage):
 
 func satisfied():
 	is_satisfied = true
+	
+	#Change visibility of bubbles
 	container.get_parent().set_visible(false)
 	emotes.set_visible(true)
 	emotes.play("satisfied")
+
+	speed = speed * 5
+
+func delete():
+	if !is_satisfied:
+		level.customer_unsatisfied()
+	queue_free()
 
 func hurt_anim():
 
@@ -100,6 +114,8 @@ func hurt_anim():
 			anim_finished = true
 
 func add_food_to_container():
+	if food_type == null:
+		return
 
 	match food_type.name:
 		"Burger": 
@@ -113,9 +129,6 @@ func add_food_to_container():
 	if has_drink:
 		var drink = DRINK.instantiate()
 		container.add_child(drink)
-
-#func _on_sprites_animation_finished() -> void:
-	#anim_finished = true
 
 func set_customer(_food_type: FoodType, _food_amount: int, _has_drink: bool):
 	food_type = _food_type

@@ -1,17 +1,53 @@
-[gd_scene load_steps=8 format=3 uid="uid://yshcy3l3rqo5"]
+[gd_scene load_steps=12 format=3 uid="uid://yshcy3l3rqo5"]
 
 [ext_resource type="Texture2D" uid="uid://bgomwqdf3tpan" path="res://assets/Ghostpixxells PixelFood/15_burger.png" id="1_kelt2"]
 [ext_resource type="Script" path="res://scripts/tower.gd" id="1_pepxi"]
 [ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/Burger.tres" id="2_drl25"]
 [ext_resource type="Texture2D" uid="uid://cnlm8olvtocia" path="res://assets/Towers/Tower.png" id="3_e7vip"]
+[ext_resource type="PackedScene" uid="uid://cqn2gfrkvtqtx" path="res://scenes/towers/range.tscn" id="5_ck07i"]
 [ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar.tscn" id="5_oamuw"]
+[ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="7_ycet3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1661t"]
 radius = 8.0
 height = 24.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xhvkj"]
-radius = 72.0
+[sub_resource type="Animation" id="Animation_hgyeq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tower/Food:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_tslrg"]
+resource_name = "fire"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tower/Food:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.45, 0.45), Vector2(0.55, 0.55), Vector2(0.6, 0.6), Vector2(0.65, 0.65), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76b71"]
+_data = {
+"RESET": SubResource("Animation_hgyeq"),
+"fire": SubResource("Animation_tslrg")
+}
 
 [node name="BurgerTower" type="Area2D" groups=["Towers"]]
 y_sort_enabled = true
@@ -21,32 +57,22 @@ script = ExtResource("1_pepxi")
 food_type = ExtResource("2_drl25")
 food_max = 5
 
-[node name="Food" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_kelt2")
-offset = Vector2(0, -13)
-
-[node name="Tower" type="Sprite2D" parent="Food"]
+[node name="Tower" type="Sprite2D" parent="."]
 show_behind_parent = true
 y_sort_enabled = true
-position = Vector2(0, 10)
-scale = Vector2(2, 2)
 texture = ExtResource("3_e7vip")
-offset = Vector2(0, -6)
+offset = Vector2(0, -1)
+
+[node name="Food" type="Sprite2D" parent="Tower"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_kelt2")
+offset = Vector2(0, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_1661t")
 
-[node name="Range" type="Area2D" parent="."]
-y_sort_enabled = true
-position = Vector2(1, 0)
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_xhvkj")
+[node name="Range" parent="." instance=ExtResource("5_ck07i")]
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2(0, -6)
@@ -61,6 +87,18 @@ texture = ExtResource("1_kelt2")
 [node name="FoodBar" parent="." instance=ExtResource("5_oamuw")]
 offset_left = -2.0
 offset_right = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_76b71")
+}
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.329412)
+z_index = -2
+position = Vector2(0, 15)
+scale = Vector2(0.1, 0.06)
+texture = ExtResource("7_ycet3")
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

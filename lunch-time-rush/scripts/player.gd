@@ -75,6 +75,7 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 	if !pick_up && area.is_in_group("Towers"):
 		tower_in_range = true
 		tower = area
+		tower.change_color()
 	
 	if area.is_in_group("Anchor"):
 		if !area.occupied:
@@ -85,6 +86,7 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 func _on_pick_up_range_area_exited(area: Area2D) -> void:
 	if area.is_in_group("Towers"):
 		tower_in_range = false
+		tower.change_color()
 	
 	if area.is_in_group("Anchor"):
 		anchor_in_range = false

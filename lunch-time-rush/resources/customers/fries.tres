@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://cnhg7ts0upk6v"]
+
+[ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/Fries.tres" id="1_dpda4"]
+[ext_resource type="Script" path="res://scripts/customer_initialiser.gd" id="1_y8vt5"]
+
+[resource]
+script = ExtResource("1_y8vt5")
+food_type = ExtResource("1_dpda4")
+hp = 2
+has_drink = false

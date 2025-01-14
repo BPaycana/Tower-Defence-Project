@@ -8,6 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://chdsg0rcv5fmi" path="res://scenes/ui/food_bubble.tscn" id="6_fs8qu"]
 [ext_resource type="Texture2D" uid="uid://cd5k3j65f26dh" path="res://assets/Modern tiles/UI/UI_thinking_emotes_animation_48x48.png" id="7_500n6"]
 
+[sub_resource type="Animation" id="Animation_04ag0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emotes:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="Animation" id="Animation_kjtxh"]
 length = 0.428571
 loop_mode = 1
@@ -232,6 +247,23 @@ tracks/1/keys = {
 "values": ["hurt_up2"]
 }
 
+[sub_resource type="Animation" id="Animation_l6mat"]
+resource_name = "satisfied"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emotes:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.45, 0.45), Vector2(0.55, 0.55), Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="Animation" id="Animation_md4la"]
 length = 0.857143
 loop_mode = 1
@@ -454,38 +486,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["walk_up2"]
-}
-
-[sub_resource type="Animation" id="Animation_l6mat"]
-resource_name = "satisfied"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Emotes:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.45, 0.45), Vector2(0.55, 0.55), Vector2(0.5, 0.5)]
-}
-
-[sub_resource type="Animation" id="Animation_04ag0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Emotes:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gvghq"]
@@ -1719,8 +1719,9 @@ animations = [{
 
 [node name="Customer" type="PathFollow2D" node_paths=PackedStringArray("food_amount", "container") groups=["Customer"]]
 rotates = false
+loop = false
 script = ExtResource("1_th3ih")
-speed = 20
+speed = 10
 food_amount = NodePath("FoodBubble/FoodAmount")
 container = NodePath("FoodBubble/VBoxContainer")
 
