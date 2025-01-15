@@ -1,4 +1,5 @@
 extends Node2D
+@onready var button: Button = $CanvasLayer/Button
 
 @export var path1: Path2D
 @export var path2: Path2D
@@ -20,7 +21,6 @@ var max_stars: int = 5
 var current_stars: int
 
 func _ready() -> void:
-	start_wave()
 	
 	current_stars = max_stars
 	star_container.set_max_stars(max_stars)
@@ -65,3 +65,5 @@ func customer_unsatisfied():
 func _on_button_button_down() -> void:
 	if wave_number < level_data.wave.size():
 		start_wave()
+	
+	button.set_visible(false)

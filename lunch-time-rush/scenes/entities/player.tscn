@@ -1,4 +1,4 @@
-[gd_scene load_steps=257 format=3 uid="uid://cfmw0hbe7jubh"]
+[gd_scene load_steps=264 format=3 uid="uid://cfmw0hbe7jubh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1edq5"]
 [ext_resource type="Texture2D" uid="uid://djyby7uodd2ou" path="res://assets/Modern tiles/Objects/Box.png" id="2_7qix4"]
@@ -8,6 +8,12 @@
 [ext_resource type="Script" path="res://scripts/player_states/player_movement.gd" id="5_ey5lj"]
 [ext_resource type="Script" path="res://scripts/player_states/player_pick_up.gd" id="6_auwry"]
 [ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="8_0mtsx"]
+[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar.tscn" id="9_3sr60"]
+[ext_resource type="AudioStream" uid="uid://cu10rnycmmdkc" path="res://audio/player/Dropping Tower.wav" id="10_jebrt"]
+[ext_resource type="Texture2D" uid="uid://dndaxtgsgq6kq" path="res://assets/FX052_nyknck/FX052_01.png" id="11_gl7k6"]
+[ext_resource type="Texture2D" uid="uid://bnsgtc3dvsdjq" path="res://assets/FX052_nyknck/FX052_02.png" id="12_5ut36"]
+[ext_resource type="Texture2D" uid="uid://bl8b3gwmqce5h" path="res://assets/FX052_nyknck/FX052_03.png" id="13_kspmo"]
+[ext_resource type="Texture2D" uid="uid://b5wrcahmyuw0p" path="res://assets/FX052_nyknck/FX052_04.png" id="14_6sipo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpa5f"]
 atlas = ExtResource("3_0ekcw")
@@ -2470,6 +2476,26 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wl2db"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_welam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_gl7k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5ut36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_kspmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6sipo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 collision_mask = 0
@@ -2487,7 +2513,7 @@ texture = ExtResource("2_7qix4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_8uqqf")
-animation = &"grab_object_up"
+animation = &"drop_object_down"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -2511,12 +2537,10 @@ animator = NodePath("../../AnimationPlayer")
 
 [node name="movement" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("5_ey5lj")
-speed = 100.0
 animator = NodePath("../../AnimationPlayer")
 
 [node name="pick_up" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator", "pick_up_point")]
 script = ExtResource("6_auwry")
-speed = 80.0
 animator = NodePath("../../AnimationPlayer")
 pick_up_point = NodePath("../../PickUpPoint")
 
@@ -2536,8 +2560,24 @@ position = Vector2(0, 15)
 scale = Vector2(0.1, 0.06)
 texture = ExtResource("8_0mtsx")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/movement" method="_on_animation_player_animation_finished"]
+[node name="FoodBar" parent="." instance=ExtResource("9_3sr60")]
+offset_left = 5.0
+offset_top = 20.0
+offset_right = 9.0
+offset_bottom = 31.0
+rotation = 1.5708
+script = null
+
+[node name="SFXDropTower" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jebrt")
+volume_db = -15.0
+
+[node name="Dust" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = -2
+position = Vector2(1, 2)
+sprite_frames = SubResource("SpriteFrames_welam")
+frame_progress = 0.98555
+
 [connection signal="area_entered" from="PickUpRange" to="." method="_on_pick_up_range_area_entered"]
 [connection signal="area_exited" from="PickUpRange" to="." method="_on_pick_up_range_area_exited"]
-[connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]

@@ -1,6 +1,8 @@
 extends State
 
 @export var speed: float = 50
+var current_speed
+
 @export var animator : AnimationPlayer
 
 
@@ -16,8 +18,17 @@ func Update(_delta : float):
 	direction.x = Input.get_axis("left","right")
 	direction.y = Input.get_axis("up","down")
 	
+	if Input.is_action_pressed("sprint") && player.stamina > 0:
+		current_speed = player.sprint(speed)
+		player.stamina -= player.stamina_drain * _delta
+	else:
+		current_speed = speed
+		player.dust.set_visible(false)
+		if player.stamina < player.max_stamina:
+			player.stamina += player.stamina_drain / 2 * _delta
+	
 	if direction:
-		player.velocity = direction * speed
+		player.velocity = direction * current_speed
 		player.player_direction = direction
 	else:
 		player.velocity = player.velocity.move_toward(Vector2.ZERO, speed)
@@ -35,6 +46,7 @@ func Update(_delta : float):
 		Vector2.UP:
 			animator.play("walk_up")
 
+#State Transitions
 	if direction.length() <= 0:
 		state_transition.emit(self, "idle")
 	

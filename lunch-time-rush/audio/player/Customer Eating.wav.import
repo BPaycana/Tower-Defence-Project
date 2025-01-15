@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dja6jeh5akf8s"
+path="res://.godot/imported/Customer Eating.wav-9dc507eb05b4968d3e5981ef05bc0a07.sample"
+
+[deps]
+
+source_file="res://audio/player/Customer Eating.wav"
+dest_files=["res://.godot/imported/Customer Eating.wav-9dc507eb05b4968d3e5981ef05bc0a07.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

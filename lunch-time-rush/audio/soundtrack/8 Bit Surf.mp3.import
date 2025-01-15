@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blkcre7iy07o4"
+path="res://.godot/imported/8 Bit Surf.mp3-4ec481e10e10de5a3729e86e371c6bf4.mp3str"
+
+[deps]
+
+source_file="res://audio/soundtrack/8 Bit Surf.mp3"
+dest_files=["res://.godot/imported/8 Bit Surf.mp3-4ec481e10e10de5a3729e86e371c6bf4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

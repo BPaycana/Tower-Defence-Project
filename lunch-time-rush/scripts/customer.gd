@@ -9,6 +9,10 @@ extends PathFollow2D
 @export var food_amount: RichTextLabel
 @export var container: VBoxContainer
 
+@onready var sfx_eating: AudioStreamPlayer = $SFXEating
+@onready var sfx_full: AudioStreamPlayer = $SFXFull
+
+
 const BURGER = preload("res://scenes/ui/burger_gui.tscn")
 const FRIES = preload("res://scenes/ui/fries_gui.tscn")
 const DRINK = preload("res://scenes/ui/drink_gui.tscn")
@@ -28,7 +32,7 @@ var is_satisfied = false
 var level
 
 func _ready() -> void:
-	
+	direction = position
 	level = get_parent().get_parent()
 	add_food_to_container()
 	food_amount.text = text_effect + str(hp)
@@ -72,6 +76,9 @@ func on_hit(_food_type, _damage):
 				hp -= _damage
 				food_amount.text = text_effect + str(hp)
 				hurt_anim()
+		
+		if hp > 0:
+			sfx_eating.play()
 
 		if hp <= 0:
 			satisfied()
@@ -83,10 +90,15 @@ func satisfied():
 	container.get_parent().set_visible(false)
 	emotes.set_visible(true)
 	emotes.play("satisfied")
+	sfx_full.play()
 
 	speed = speed * 5
 
 func delete():
+	level.customers_in_wave -= 1
+	
+	if level.customers_in_wave <= 0:
+		level.button.set_visible(true)
 	if !is_satisfied:
 		level.customer_unsatisfied()
 	queue_free()
