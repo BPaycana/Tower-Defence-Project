@@ -52,7 +52,7 @@ _data = {
 [node name="DrinkTower" type="Area2D" groups=["Towers"]]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 4
+collision_mask = 100
 script = ExtResource("1_s3ki7")
 food_type = ExtResource("2_yi2po")
 food_max = 5
@@ -100,5 +100,7 @@ position = Vector2(0, 15)
 scale = Vector2(0.1, 0.06)
 texture = ExtResource("7_31e7v")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

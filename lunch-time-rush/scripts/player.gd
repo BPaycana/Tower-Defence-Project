@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 		refill(tower)
 
 #	Drop down tower
-	if pick_up && Input.is_action_just_pressed("pick_up") && anchor_in_range:
+	if pick_up && Input.is_action_just_pressed("pick_up"):
 		_put_down(tower)
 		tower.picked_up = false
 
@@ -59,11 +59,13 @@ func _put_down(_put_down_tower):
 	tower.call_deferred("reparent", self.get_parent())
 	
 	#Sets position to the anchor
-	tower.global_position = Vector2(anchor.global_position.x, anchor.global_position.y - 10)
+	#tower.global_position = Vector2(anchor.global_position.x, anchor.global_position.y - 10)
 	
 	#Assigns the tower an anchor
-	tower.anchor = anchor
-	anchor.occupied = true
+	#tower.anchor = anchor
+	#anchor.occupied = true
+	
+	tower.launch(player_direction, 400, 15)
 	
 	sfx_drop_tower.play()
 	
