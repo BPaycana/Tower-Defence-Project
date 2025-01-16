@@ -2560,7 +2560,15 @@ position = Vector2(0, 15)
 scale = Vector2(0.1, 0.06)
 texture = ExtResource("8_0mtsx")
 
-[node name="FoodBar" parent="." instance=ExtResource("9_3sr60")]
+[node name="ThrowBar" parent="." instance=ExtResource("9_3sr60")]
+visible = false
+offset_left = 11.0
+offset_right = 15.0
+max_value = 400.0
+script = null
+
+[node name="StaminaBar" parent="." instance=ExtResource("9_3sr60")]
+visible = false
 offset_left = 5.0
 offset_top = 20.0
 offset_right = 9.0

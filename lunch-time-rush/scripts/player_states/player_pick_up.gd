@@ -26,9 +26,12 @@ func Update(_delta : float):
 	if Input.is_action_pressed("sprint") && player.stamina > 0:
 		current_speed = player.sprint(speed)
 		player.stamina -= player.stamina_drain * _delta
+		player.stamina_bar.value = player.stamina
+		player.stamina_bar.set_visible(true)
 	else:
 		current_speed = speed
 		player.dust.set_visible(false)
+		player.stamina_bar.set_visible(false)
 		if player.stamina < player.max_stamina:
 			player.stamina += player.stamina_drain / 2 * _delta
 

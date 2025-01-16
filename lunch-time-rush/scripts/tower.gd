@@ -119,7 +119,6 @@ func change_color():
 
 
 func _on_range_body_entered(body: Node2D) -> void:
-	print_debug(body.name)
 	# Adds enemy in area to array
 	if body.is_in_group("Customer"):
 		if body.get_parent().has_drink == true and body.get_parent().is_satisfied == false and food_type.name == "Drink":
@@ -144,23 +143,13 @@ func _on_range_body_exited(body: Node2D) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print_debug(body.name)
 	if body.is_in_group("Walls"):
 		is_throwing = false
 		land()
-	
-	if body.is_in_group("Anchor"):
-		print_debug("helkl")
-		if body.occupied == false:
-			land()
-			global_position = Vector2(body.global_position.x, body.global_position.y - 10)
-			anchor = body
-			body.occupied = true
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Anchor"):
-		print_debug("helkl")
 		if area.occupied == false && is_throwing:
 			is_throwing = false
 			land()
