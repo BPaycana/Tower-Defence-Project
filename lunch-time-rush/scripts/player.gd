@@ -35,7 +35,6 @@ var is_charging = false
 
 func _physics_process(_delta: float) -> void:
 	look_direction = get_local_mouse_position()
-	print_debug(look_direction)
 #	Pick up tower
 	if  !pick_up && tower_in_range && tower != null && Input.is_action_just_pressed("pick_up") && !has_food:
 		_pick_up(tower)
@@ -54,6 +53,7 @@ func _physics_process(_delta: float) -> void:
 
 #	Drop down tower
 	if is_charging && Input.is_action_just_released("lmb") && anim_finished:
+		is_charging = false
 		_put_down(tower)
 		throw_bar.set_visible(false)
 		tower.picked_up = false

@@ -8,10 +8,6 @@
 
 config_version=5
 
-[Lunch Time Rush]
-
-config/ninetailsrabbit.character_generator_importer_tool/update_notification_enabled=true
-
 [application]
 
 config/name="Lunch Time Rush"
