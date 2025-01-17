@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		select_enemy()
 		turn()
 
-		if ready_to_fire and food_amount > 0:
+		if !anchor == null and ready_to_fire and food_amount > 0:
 			fire()
 	else:
 		enemy = null

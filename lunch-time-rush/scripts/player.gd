@@ -17,6 +17,7 @@ var stamina = 100
 var stamina_drain = 100
 
 var player_direction : Vector2
+var look_direction
 var pick_up = false
 var tower_in_range = false
 var anchor_in_range = false
@@ -29,11 +30,12 @@ var anim_finished = true
 var time: float = 0.0  # Time variable to control the range oscillation
 var max_throw_speed = 400
 var throw_speed = 0
-var throw_angle = 15
+var throw_angle = 30
 var is_charging = false
 
 func _physics_process(_delta: float) -> void:
-
+	look_direction = get_local_mouse_position()
+	print_debug(look_direction)
 #	Pick up tower
 	if  !pick_up && tower_in_range && tower != null && Input.is_action_just_pressed("pick_up") && !has_food:
 		_pick_up(tower)
@@ -43,7 +45,7 @@ func _physics_process(_delta: float) -> void:
 	if !pick_up && tower_in_range && tower != null && Input.is_action_just_pressed("pick_up") && has_food:
 		refill(tower)
 
-	if pick_up && Input.is_action_pressed("pick_up") && anim_finished:
+	if pick_up && Input.is_action_pressed("lmb") && anim_finished:
 		throw_bar.set_visible(true)
 		throw_bar.value = throw_speed
 		is_charging = true
@@ -51,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 		throw_speed = max_throw_speed * abs(sin(time))
 
 #	Drop down tower
-	if is_charging && Input.is_action_just_released("pick_up") && anim_finished:
+	if is_charging && Input.is_action_just_released("lmb") && anim_finished:
 		_put_down(tower)
 		throw_bar.set_visible(false)
 		tower.picked_up = false
@@ -82,7 +84,7 @@ func _put_down(_put_down_tower):
 	#tower.anchor = anchor
 	#anchor.occupied = true
 	
-	tower.launch(player_direction, throw_speed, throw_angle)
+	tower.launch(look_direction, throw_speed, throw_angle)
 	
 	sfx_drop_tower.play()
 	

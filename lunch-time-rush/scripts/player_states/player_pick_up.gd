@@ -8,6 +8,7 @@ var current_speed
 var player: Player
 var direction : Vector2
 
+
 var pick_up_left = Vector2(-6, 0)
 var pick_up_right = Vector2(6, 0)
 var pick_up_up = Vector2(0, -1)
@@ -20,6 +21,7 @@ func Enter():
 
 
 func Update(_delta : float):
+	
 	if not player.anim_finished:
 		return
 
