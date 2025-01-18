@@ -28,15 +28,15 @@
 
 [sub_resource type="Curve2D" id="Curve2D_2e36l"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -101.346, 125.755, 0, 0, 0, 0, -101.346, -95.3302)
+"points": PackedVector2Array(0, 0, 0, 0, -101.346, 125.755, 0, 0, 0, 0, -3.505, 116, 0, 0, 0, 0, -101.346, -95.3302)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_8cajc"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 99, -106, 0, 0, 0, 0, 99, 114)
+"points": PackedVector2Array(0, 0, 0, 0, 99, -106, 0, 0, 0, 0, 109.68, -11, 0, 0, 0, 0, 99, 114)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evmtc"]
 texture = ExtResource("13_58u6f")

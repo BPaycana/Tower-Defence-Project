@@ -22,6 +22,7 @@ var text_effect: String = "[color=black][wave amp=10.0 freq=10.0 connected=1] "
 var skin: int
 
 var direction
+var rounded_direction
 var anim_finished = true
 
 var food_type = FoodType
@@ -49,8 +50,12 @@ func move(delta):
 	var old_pos = position
 	await(get_tree().create_timer(0.1).timeout)
 	direction = position - old_pos
+	rounded_direction = round_direction(direction)
+	print_debug(rounded_direction)
 	
-	match direction.normalized():
+	
+	
+	match rounded_direction:
 		Vector2.LEFT:
 			if anim_finished:
 				sprites.play("walk_left" + str(skin))
@@ -63,6 +68,24 @@ func move(delta):
 		Vector2.UP:
 			if anim_finished:
 				sprites.play("walk_up" + str(skin))
+		Vector2.DOWN + Vector2.LEFT:
+			if anim_finished:
+				sprites.play("walk_down" + str(skin))
+		Vector2.DOWN + Vector2.RIGHT:
+			if anim_finished:
+				sprites.play("walk_down" + str(skin))
+		Vector2.UP + Vector2.LEFT:
+			if anim_finished:
+				sprites.play("walk_up" + str(skin))
+		Vector2.UP + Vector2.RIGHT:
+			if anim_finished:
+				sprites.play("walk_up" + str(skin))
+
+func round_direction(direction: Vector2) -> Vector2:
+	var x = direction.x
+	var y = direction.y
+
+	return Vector2(1 if x > 0 else -1 if x < 0 else 0, 1 if y > 0 else -1 if y < 0 else 0)
 
 func on_hit(_food_type, _damage):
 	if !is_satisfied:
@@ -107,7 +130,7 @@ func hurt_anim():
 
 	anim_finished = false
 
-	match direction.normalized():
+	match rounded_direction.normalized():
 		Vector2.LEFT:
 			sprites.play("hurt_left" + str(skin))
 			await sprites.animation_finished
@@ -121,6 +144,22 @@ func hurt_anim():
 			await sprites.animation_finished
 			anim_finished = true
 		Vector2.UP:
+			sprites.play("hurt_up" + str(skin))
+			await sprites.animation_finished
+			anim_finished = true
+		Vector2.DOWN + Vector2.LEFT:
+			sprites.play("hurt_down" + str(skin))
+			await sprites.animation_finished
+			anim_finished = true
+		Vector2.DOWN + Vector2.RIGHT:
+			sprites.play("hurt_down" + str(skin))
+			await sprites.animation_finished
+			anim_finished = true
+		Vector2.UP + Vector2.LEFT:
+			sprites.play("hurt_up" + str(skin))
+			await sprites.animation_finished
+			anim_finished = true
+		Vector2.UP + Vector2.RIGHT:
 			sprites.play("hurt_up" + str(skin))
 			await sprites.animation_finished
 			anim_finished = true

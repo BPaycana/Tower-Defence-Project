@@ -15,7 +15,10 @@ func _physics_process(_delta: float) -> void:
 	if tower.picked_up:
 		self.set_visible(true)
 		
-		if player.anchor_in_range:
-			sprite.modulate = Color("green")
-		else:
-			sprite.modulate = Color("red")
+		if player.is_charging:
+			self.set_visible(false)
+		
+		#if player.anchor_in_range:
+			#sprite.modulate = Color("green")
+		#else:
+			#sprite.modulate = Color("red")

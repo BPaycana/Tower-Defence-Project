@@ -8,7 +8,9 @@ extends CharacterBody2D
 
 @onready var box: Sprite2D = $PickUpPoint/Box
 @onready var stamina_bar: TextureProgressBar = $StaminaBar
-@onready var throw_bar: TextureProgressBar = $ThrowBar
+@onready var throw_bar: TextureProgressBar = $Pivot/ThrowBarPoint/ThrowBar
+@onready var pivot: Node2D = $Pivot
+
 
 @onready var sfx_drop_tower: AudioStreamPlayer = $SFXDropTower
 
@@ -35,6 +37,7 @@ var is_charging = false
 
 func _physics_process(_delta: float) -> void:
 	look_direction = get_local_mouse_position()
+	pivot.look_at(get_global_mouse_position())
 #	Pick up tower
 	if  !pick_up && tower_in_range && tower != null && Input.is_action_just_pressed("pick_up") && !has_food:
 		_pick_up(tower)

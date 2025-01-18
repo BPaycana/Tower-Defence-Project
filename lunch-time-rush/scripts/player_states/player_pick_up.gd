@@ -90,6 +90,6 @@ func pick_up_movement_animation():
 		Vector2.UP + Vector2.LEFT:
 			animator.play("walk_with_object_up")
 			pick_up_point.position = pick_up_up
-		Vector2.UP + Vector2.LEFT:
+		Vector2.UP + Vector2.RIGHT:
 			animator.play("walk_with_object_up")
 			pick_up_point.position = pick_up_up

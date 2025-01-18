@@ -1,4 +1,4 @@
-[gd_scene load_steps=264 format=3 uid="uid://cfmw0hbe7jubh"]
+[gd_scene load_steps=266 format=3 uid="uid://cfmw0hbe7jubh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1edq5"]
 [ext_resource type="Texture2D" uid="uid://djyby7uodd2ou" path="res://assets/Modern tiles/Objects/Box.png" id="2_7qix4"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bnsgtc3dvsdjq" path="res://assets/FX052_nyknck/FX052_02.png" id="12_5ut36"]
 [ext_resource type="Texture2D" uid="uid://bl8b3gwmqce5h" path="res://assets/FX052_nyknck/FX052_03.png" id="13_kspmo"]
 [ext_resource type="Texture2D" uid="uid://b5wrcahmyuw0p" path="res://assets/FX052_nyknck/FX052_04.png" id="14_6sipo"]
+[ext_resource type="Texture2D" uid="uid://bw0fbu6ie5uty" path="res://assets/UI/ThrowBarUnder.png" id="15_j0akp"]
+[ext_resource type="Texture2D" uid="uid://bjcmeqhoycmgp" path="res://assets/UI/ThrowBarProgress.png" id="16_5ns6p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpa5f"]
 atlas = ExtResource("3_0ekcw")
@@ -2560,13 +2562,6 @@ position = Vector2(0, 15)
 scale = Vector2(0.1, 0.06)
 texture = ExtResource("8_0mtsx")
 
-[node name="ThrowBar" parent="." instance=ExtResource("9_3sr60")]
-visible = false
-offset_left = 11.0
-offset_right = 15.0
-max_value = 400.0
-script = null
-
 [node name="StaminaBar" parent="." instance=ExtResource("9_3sr60")]
 visible = false
 offset_left = 5.0
@@ -2586,6 +2581,31 @@ z_index = -2
 position = Vector2(1, 2)
 sprite_frames = SubResource("SpriteFrames_welam")
 frame_progress = 0.98555
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="ThrowBarPoint" type="Marker2D" parent="Pivot"]
+position = Vector2(25, 0)
+
+[node name="ThrowBar" parent="Pivot/ThrowBarPoint" instance=ExtResource("9_3sr60")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -6.0
+offset_right = 22.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+max_value = 400.0
+texture_under = ExtResource("15_j0akp")
+texture_progress = ExtResource("16_5ns6p")
+script = null
 
 [connection signal="area_entered" from="PickUpRange" to="." method="_on_pick_up_range_area_entered"]
 [connection signal="area_exited" from="PickUpRange" to="." method="_on_pick_up_range_area_exited"]
