@@ -119,9 +119,14 @@ func satisfied():
 
 func delete():
 	level.customers_in_wave -= 1
+	level.tv.get_child(0).text = "[color=gray][wave amp=10.0 freq=10.0 connected=1]" + "  x " + str(level.customers_in_wave)
 	
 	if level.customers_in_wave <= 0:
-		level.button.set_visible(true)
+		level.wave_number += 1
+		
+		if level.wave_number < level.level_data.wave.size():
+			level.button.set_visible(true)
+			
 	if !is_satisfied:
 		level.customer_unsatisfied()
 	queue_free()

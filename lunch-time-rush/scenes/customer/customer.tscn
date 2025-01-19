@@ -1718,6 +1718,7 @@ animations = [{
 }]
 
 [node name="Customer" type="PathFollow2D" node_paths=PackedStringArray("food_amount", "container") groups=["Customer"]]
+z_index = 1
 rotates = false
 loop = false
 script = ExtResource("1_fna7a")
@@ -1758,6 +1759,7 @@ position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_t4jlp")
 
 [node name="FoodBubble" parent="." instance=ExtResource("6_fs8qu")]
+z_index = 1
 position = Vector2(8, -24)
 
 [node name="Emotes" type="AnimatedSprite2D" parent="."]

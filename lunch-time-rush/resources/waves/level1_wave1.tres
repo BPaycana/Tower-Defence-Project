@@ -6,5 +6,5 @@
 
 [resource]
 script = ExtResource("3_l0vuu")
-customers = Array[Resource]([ExtResource("1_rn6nl"), ExtResource("2_35fk8")])
+customers = Array[Resource]([ExtResource("1_rn6nl"), ExtResource("2_35fk8"), ExtResource("1_rn6nl")])
 spawn_delay = 2.0
