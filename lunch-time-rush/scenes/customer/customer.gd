@@ -81,7 +81,7 @@ func move(delta):
 			if anim_finished:
 				sprites.play("walk_up" + str(skin))
 
-func round_direction(direction: Vector2) -> Vector2:
+func round_direction(_direction: Vector2) -> Vector2:
 	var x = direction.x
 	var y = direction.y
 

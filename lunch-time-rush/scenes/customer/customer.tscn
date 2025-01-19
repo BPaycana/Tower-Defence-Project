@@ -1733,19 +1733,23 @@ autoplay = "satisfied"
 
 [node name="Customer1" type="AnimatedSprite2D" parent="."]
 visible = false
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_j0f65")
 animation = &"hurt_down1"
 
 [node name="Customer2" type="AnimatedSprite2D" parent="."]
 visible = false
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_pmwf7")
 animation = &"hurt_down2"
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4xswj")
 animation = &"walk_down1"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Customer"]]
+position = Vector2(0, -8)
 collision_layer = 4
 collision_mask = 10
 
@@ -1754,7 +1758,7 @@ position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_t4jlp")
 
 [node name="FoodBubble" parent="." instance=ExtResource("6_fs8qu")]
-position = Vector2(9, -17)
+position = Vector2(8, -24)
 
 [node name="Emotes" type="AnimatedSprite2D" parent="."]
 visible = false

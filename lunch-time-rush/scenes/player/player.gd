@@ -15,8 +15,8 @@ extends CharacterBody2D
 @onready var sfx_drop_tower: AudioStreamPlayer = $SFXDropTower
 
 var max_stamina = 100
-var stamina = 100
-var stamina_drain = 100
+var stamina: float = 100
+var stamina_drain: float = 100
 
 var player_direction : Vector2
 var look_direction
