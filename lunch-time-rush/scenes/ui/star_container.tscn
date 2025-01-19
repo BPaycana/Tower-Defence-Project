@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b73sa0bxcgea0"]
-
-[ext_resource type="Script" path="res://scripts/star_container.gd" id="1_tmy8f"]
-
-[node name="StarContainer" type="HBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(3, 3)
-script = ExtResource("1_tmy8f")

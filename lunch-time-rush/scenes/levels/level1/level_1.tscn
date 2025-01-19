@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://w8ktmi08y05o"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_l2hny"]
+[ext_resource type="PackedScene" uid="uid://cfmw0hbe7jubh" path="res://scenes/player/player.tscn" id="1_mv1de"]
+[ext_resource type="PackedScene" uid="uid://yshcy3l3rqo5" path="res://scenes/towers/burger_tower.tscn" id="2_6ul2x"]
+[ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/food_type/Fries.tres" id="2_7njex"]
+[ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/food_type/Burger.tres" id="3_jsjkl"]
+[ext_resource type="Resource" uid="uid://d6q4v5ller87" path="res://resources/levels/level1.tres" id="4_33xwn"]
+[ext_resource type="PackedScene" uid="uid://b73sa0bxcgea0" path="res://scenes/ui/star_container/star_container.tscn" id="6_2ub81"]
+[ext_resource type="PackedScene" uid="uid://dpxi0htvf74e" path="res://scenes/objects/food_station/food_station.tscn" id="6_ah6il"]
+[ext_resource type="PackedScene" uid="uid://c0c72ojsp1gku" path="res://scenes/objects/anchor/anchor.tscn" id="8_4mq77"]
+[ext_resource type="FontFile" uid="uid://culsr0ovkxt56" path="res://fonts/m5x7.ttf" id="8_rra8k"]
+
+[sub_resource type="Curve2D" id="Curve2D_fx7ra"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -114, 63, 0, 0, 0, 0, -119, -102)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_12y22"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 156, -89, 0, 0, 0, 0, 161, 64)
+}
+point_count = 2
+
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("path1", "path2", "star_container")]
+y_sort_enabled = true
+script = ExtResource("1_l2hny")
+path1 = NodePath("Path1")
+path2 = NodePath("Path1")
+fries = ExtResource("2_7njex")
+burger = ExtResource("3_jsjkl")
+star_container = NodePath("CanvasLayer/StarContainer")
+level_data = ExtResource("4_33xwn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Player" parent="." instance=ExtResource("1_mv1de")]
+
+[node name="BurgerTower" parent="." instance=ExtResource("2_6ul2x")]
+position = Vector2(45, 0)
+
+[node name="Path1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_fx7ra")
+
+[node name="Path2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_12y22")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StarContainer" parent="CanvasLayer" instance=ExtResource("6_2ub81")]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -32.5
+offset_right = 134.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_rra8k")
+theme_override_font_sizes/font_size = 72
+text = "Start Wave"
+
+[node name="Anchor" parent="." instance=ExtResource("8_4mq77")]
+position = Vector2(-56, -6)
+
+[node name="Anchor2" parent="." instance=ExtResource("8_4mq77")]
+position = Vector2(106, -9)
+
+[node name="FoodStation" parent="." instance=ExtResource("6_ah6il")]
+position = Vector2(0, -73)
+
+[connection signal="button_down" from="CanvasLayer/Button" to="." method="_on_button_button_down"]

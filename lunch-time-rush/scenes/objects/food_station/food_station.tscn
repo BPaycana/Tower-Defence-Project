@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpxi0htvf74e"]
+
+[ext_resource type="Texture2D" uid="uid://b2d3f8pi5eav2" path="res://scenes/objects/food_station/FoodStation.png" id="1_1ep5b"]
+[ext_resource type="Script" path="res://scenes/objects/food_station/food_station.gd" id="1_ivujg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmhu6"]
+size = Vector2(46, 32)
+
+[node name="FoodStation" type="Area2D" groups=["Food Station"]]
+collision_layer = 16
+script = ExtResource("1_ivujg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_1ep5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tmhu6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

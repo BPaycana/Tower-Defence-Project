@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cq2wk6xubo4me"
+path="res://.godot/imported/8 Bit Surf.mp3-83b0db17ede44cd7585bc8c5f47077d5.mp3str"
+
+[deps]
+
+source_file="res://scenes/levels/level1/8 Bit Surf.mp3"
+dest_files=["res://.godot/imported/8 Bit Surf.mp3-83b0db17ede44cd7585bc8c5f47077d5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://yshcy3l3rqo5"]
 
-[ext_resource type="Texture2D" uid="uid://bgomwqdf3tpan" path="res://assets/Ghostpixxells PixelFood/15_burger.png" id="1_kelt2"]
-[ext_resource type="Script" path="res://scripts/tower.gd" id="1_pepxi"]
-[ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/Burger.tres" id="2_drl25"]
-[ext_resource type="Texture2D" uid="uid://cnlm8olvtocia" path="res://assets/Towers/Tower.png" id="3_e7vip"]
+[ext_resource type="Texture2D" uid="uid://uhet8plo2qh0" path="res://scenes/towers/tower_assets/burger.png" id="1_kelt2"]
+[ext_resource type="Script" path="res://scenes/towers/tower.gd" id="1_pepxi"]
+[ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/food_type/Burger.tres" id="2_drl25"]
+[ext_resource type="Texture2D" uid="uid://bi4b4h4bcsyfy" path="res://scenes/towers/tower_assets/Tower.png" id="3_e7vip"]
 [ext_resource type="PackedScene" uid="uid://cqn2gfrkvtqtx" path="res://scenes/towers/range.tscn" id="5_ck07i"]
-[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar.tscn" id="5_oamuw"]
+[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar/food_bar.tscn" id="5_oamuw"]
 [ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="7_ycet3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1661t"]

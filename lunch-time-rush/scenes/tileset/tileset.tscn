@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cod8kmitkmemp"]
+
+[node name="Tileset" type="Node2D"]
+
+[node name="Floor" type="TileMapLayer" parent="."]
+
+[node name="FloorOverlay" type="TileMapLayer" parent="."]
+
+[node name="Walls" type="TileMapLayer" parent="."]
+
+[node name="Objects" type="TileMapLayer" parent="."]
+
+[node name="Items" type="TileMapLayer" parent="."]

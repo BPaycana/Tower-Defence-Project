@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqn2gfrkvtqtx"]
 
-[ext_resource type="Texture2D" uid="uid://wsp5q2erj1ox" path="res://assets/UI/range_overlay.png" id="1_3nx78"]
-[ext_resource type="Script" path="res://scripts/range.gd" id="1_go4ks"]
+[ext_resource type="Texture2D" uid="uid://c1tqdtfp8jygy" path="res://scenes/towers/tower_assets/range_overlay.png" id="1_3nx78"]
+[ext_resource type="Script" path="res://scenes/towers/range.gd" id="1_56pjo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhvkj"]
 radius = 72.0
@@ -11,7 +11,7 @@ y_sort_enabled = true
 position = Vector2(1, 0)
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("1_go4ks")
+script = ExtResource("1_56pjo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

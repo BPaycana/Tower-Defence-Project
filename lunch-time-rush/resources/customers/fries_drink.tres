@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://1dqppxgb25fa"]
 
-[ext_resource type="Script" path="res://scripts/customer_initialiser.gd" id="1_35h2k"]
-[ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/Fries.tres" id="1_unjj5"]
+[ext_resource type="Script" path="res://resources/customers/customer_initialiser.gd" id="1_35h2k"]
+[ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/food_type/Fries.tres" id="1_unjj5"]
 
 [resource]
 script = ExtResource("1_35h2k")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckjm28wc0vmo0"
+path="res://.godot/imported/Dropping Tower.wav-e7ca34a2b38cdc03be436459e5a3120d.sample"
+
+[deps]
+
+source_file="res://scenes/towers/tower_sfx/Dropping Tower.wav"
+dest_files=["res://.godot/imported/Dropping Tower.wav-e7ca34a2b38cdc03be436459e5a3120d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

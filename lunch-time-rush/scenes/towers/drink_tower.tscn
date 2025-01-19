@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0bjrnwutthgg"]
+[gd_scene load_steps=11 format=3 uid="uid://c0bjrnwutthgg"]
 
-[ext_resource type="Script" path="res://scripts/tower.gd" id="1_s3ki7"]
-[ext_resource type="Resource" uid="uid://d13x7haljuqy" path="res://resources/Drink.tres" id="2_yi2po"]
-[ext_resource type="Texture2D" uid="uid://ctrct1her0lwi" path="res://assets/Ghostpixxells PixelFood/soft_drink_red.png" id="3_l135u"]
-[ext_resource type="Texture2D" uid="uid://cetps0grv0wk" path="res://assets/Towers/YellowTower.png" id="4_albfa"]
-[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar.tscn" id="5_6pnnc"]
+[ext_resource type="Script" path="res://scenes/towers/tower.gd" id="1_e2yca"]
+[ext_resource type="Texture2D" uid="uid://csyc7wol4jvao" path="res://scenes/towers/tower_assets/drink.png" id="3_l135u"]
+[ext_resource type="Texture2D" uid="uid://duxokykrbdjem" path="res://scenes/towers/tower_assets/YellowTower.png" id="4_albfa"]
+[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar/food_bar.tscn" id="5_6pnnc"]
 [ext_resource type="PackedScene" uid="uid://cqn2gfrkvtqtx" path="res://scenes/towers/range.tscn" id="5_n1rbi"]
 [ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="7_31e7v"]
 
@@ -53,9 +52,7 @@ _data = {
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 100
-script = ExtResource("1_s3ki7")
-food_type = ExtResource("2_yi2po")
-food_max = 5
+script = ExtResource("1_e2yca")
 
 [node name="Tower" type="Sprite2D" parent="."]
 show_behind_parent = true

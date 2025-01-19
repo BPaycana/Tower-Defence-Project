@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://br2vqyrus41s1"]
 
-[ext_resource type="Script" path="res://scripts/customer_initialiser.gd" id="1_2aptk"]
-[ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/Burger.tres" id="1_qh16d"]
+[ext_resource type="Script" path="res://resources/customers/customer_initialiser.gd" id="1_2aptk"]
+[ext_resource type="Resource" uid="uid://b2cdj72t7ne2j" path="res://resources/food_type/Burger.tres" id="1_qh16d"]
 
 [resource]
 script = ExtResource("1_2aptk")

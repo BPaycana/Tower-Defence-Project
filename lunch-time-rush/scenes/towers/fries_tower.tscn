@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://kjie6qj0qqnm"]
+[gd_scene load_steps=11 format=3 uid="uid://kjie6qj0qqnm"]
 
-[ext_resource type="Script" path="res://scripts/tower.gd" id="1_ywa7u"]
-[ext_resource type="Resource" uid="uid://bnn7x4h2uv20p" path="res://resources/Fries.tres" id="2_rqgvr"]
-[ext_resource type="Texture2D" uid="uid://mfah8j5y88m5" path="res://assets/Ghostpixxells PixelFood/44_frenchfries.png" id="3_7ifwq"]
-[ext_resource type="Texture2D" uid="uid://b6lm8d8dyruvf" path="res://assets/Towers/BlueTower.png" id="4_8ypne"]
+[ext_resource type="Script" path="res://scenes/towers/tower.gd" id="1_hm7tj"]
+[ext_resource type="Texture2D" uid="uid://h1maw7liph64" path="res://scenes/towers/tower_assets/fries.png" id="3_7ifwq"]
+[ext_resource type="Texture2D" uid="uid://b10h5w5vn8sj5" path="res://scenes/towers/tower_assets/BlueTower.png" id="4_8ypne"]
 [ext_resource type="PackedScene" uid="uid://cqn2gfrkvtqtx" path="res://scenes/towers/range.tscn" id="5_6u334"]
-[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar.tscn" id="5_bdmpg"]
+[ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar/food_bar.tscn" id="5_bdmpg"]
 [ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="7_x6mhs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1661t"]
@@ -53,9 +52,7 @@ _data = {
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 100
-script = ExtResource("1_ywa7u")
-food_type = ExtResource("2_rqgvr")
-food_max = 5
+script = ExtResource("1_hm7tj")
 
 [node name="Tower" type="Sprite2D" parent="."]
 show_behind_parent = true
