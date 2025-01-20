@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="WaveData" load_steps=4 format=3 uid="uid://dwdb7dtrs36em"]
+[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3 uid="uid://dwdb7dtrs36em"]
 
 [ext_resource type="Resource" uid="uid://1dqppxgb25fa" path="res://resources/customers/fries_drink.tres" id="1_ycty2"]
 [ext_resource type="Resource" uid="uid://cnhg7ts0upk6v" path="res://resources/customers/fries.tres" id="2_8vqkf"]
 [ext_resource type="Script" path="res://resources/waves/wave_data.gd" id="3_ayand"]
+[ext_resource type="Resource" uid="uid://c4dmtxnhrptkc" path="res://resources/customers/burger.tres" id="3_p1jej"]
+[ext_resource type="Resource" uid="uid://br2vqyrus41s1" path="res://resources/customers/burger_drink.tres" id="4_idt6g"]
 
 [resource]
 script = ExtResource("3_ayand")
-customers = Array[Resource]([ExtResource("2_8vqkf"), ExtResource("1_ycty2")])
-spawn_delay = 2.0
+customers = Array[Resource]([ExtResource("2_8vqkf"), ExtResource("1_ycty2"), ExtResource("3_p1jej"), ExtResource("4_idt6g"), ExtResource("1_ycty2"), ExtResource("1_ycty2"), ExtResource("2_8vqkf"), ExtResource("4_idt6g"), ExtResource("3_p1jej"), ExtResource("2_8vqkf"), ExtResource("1_ycty2"), ExtResource("3_p1jej"), ExtResource("4_idt6g"), ExtResource("2_8vqkf"), ExtResource("1_ycty2")])
+spawn_delay = 6.0

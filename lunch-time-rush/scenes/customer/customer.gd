@@ -51,9 +51,6 @@ func move(delta):
 	await(get_tree().create_timer(0.1).timeout)
 	direction = position - old_pos
 	rounded_direction = round_direction(direction)
-	print_debug(rounded_direction)
-	
-	
 	
 	match rounded_direction:
 		Vector2.LEFT:
@@ -119,7 +116,7 @@ func satisfied():
 
 func delete():
 	level.customers_in_wave -= 1
-	level.tv.get_child(0).text = "[color=gray][wave amp=10.0 freq=10.0 connected=1]" + "  x " + str(level.customers_in_wave)
+	level.tv.get_child(0).text = "[color=gray][wave amp=10.0 freq=10.0 connected=1]" + " x " + str(level.customers_in_wave)
 	
 	if level.customers_in_wave <= 0:
 		level.wave_number += 1

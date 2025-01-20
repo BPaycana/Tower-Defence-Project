@@ -11,9 +11,6 @@ extends CharacterBody2D
 @onready var throw_bar: TextureProgressBar = $Pivot/ThrowBarPoint/ThrowBar
 @onready var pivot: Node2D = $Pivot
 
-
-@onready var sfx_drop_tower: AudioStreamPlayer = $SFXDropTower
-
 var max_stamina = 100
 var stamina: float = 100
 var stamina_drain: float = 100
@@ -88,8 +85,6 @@ func _put_down(_put_down_tower):
 	#anchor.occupied = true
 	
 	tower.launch(look_direction, throw_speed, throw_angle)
-	
-	sfx_drop_tower.play()
 	
 	await get_tree().create_timer(0.1).timeout
 	pick_up = false

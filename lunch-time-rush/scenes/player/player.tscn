@@ -1,4 +1,4 @@
-[gd_scene load_steps=266 format=3 uid="uid://cfmw0hbe7jubh"]
+[gd_scene load_steps=265 format=3 uid="uid://cfmw0hbe7jubh"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_36q80"]
 [ext_resource type="Texture2D" uid="uid://c5gm7tr3lqff3" path="res://scenes/player/player_assets/Box.png" id="2_dchh0"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scenes/player/player_states/player_pick_up.gd" id="7_hddl6"]
 [ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="8_4nkww"]
 [ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar/food_bar.tscn" id="9_e08ky"]
-[ext_resource type="AudioStream" uid="uid://ckjm28wc0vmo0" path="res://scenes/towers/tower_sfx/Dropping Tower.wav" id="10_fnqih"]
 [ext_resource type="Texture2D" uid="uid://bg6rjsyrogcwi" path="res://scenes/player/player_assets/dust/FX052_01.png" id="11_1vqc8"]
 [ext_resource type="Texture2D" uid="uid://bbdy2c1cduivy" path="res://scenes/player/player_assets/dust/FX052_02.png" id="12_s7rp0"]
 [ext_resource type="Texture2D" uid="uid://bvchs80b8f3po" path="res://scenes/player/player_assets/dust/FX052_03.png" id="13_bu5h8"]
@@ -2572,10 +2571,6 @@ offset_right = 9.0
 offset_bottom = 31.0
 rotation = 1.5708
 script = null
-
-[node name="SFXDropTower" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_fnqih")
-volume_db = -15.0
 
 [node name="Dust" type="AnimatedSprite2D" parent="."]
 visible = false

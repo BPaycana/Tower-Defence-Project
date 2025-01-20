@@ -6,6 +6,8 @@ extends Area2D
 
 @export var food_type: FoodType
 
+@onready var drop_tower_sfx: AudioStreamPlayer = $DropTowerSFX
+
 var player
 var anchor
 
@@ -74,6 +76,7 @@ func launch(direction: Vector2, speed: float, angle: float) -> void:
 func land():
 	# Called when the tower lands
 	ready_to_fire = true  # Reset firing state
+	drop_tower_sfx.play()
 
 func turn():
 	pivot.look_at(enemy.position)

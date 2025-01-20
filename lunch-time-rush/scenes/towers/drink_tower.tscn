@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0bjrnwutthgg"]
+[gd_scene load_steps=13 format=3 uid="uid://c0bjrnwutthgg"]
 
 [ext_resource type="Script" path="res://scenes/towers/tower.gd" id="1_e2yca"]
 [ext_resource type="Resource" uid="uid://d13x7haljuqy" path="res://resources/food_type/Drink.tres" id="2_c6wap"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dnxi71ax2xy0w" path="res://scenes/ui/food_bar/food_bar.tscn" id="5_6pnnc"]
 [ext_resource type="PackedScene" uid="uid://cqn2gfrkvtqtx" path="res://scenes/towers/range.tscn" id="5_n1rbi"]
 [ext_resource type="Texture2D" uid="uid://bng7vn6q3tvd1" path="res://icon.svg" id="7_31e7v"]
+[ext_resource type="AudioStream" uid="uid://ckjm28wc0vmo0" path="res://scenes/towers/tower_sfx/Dropping Tower.wav" id="8_6veqr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1661t"]
 radius = 8.0
@@ -99,6 +100,10 @@ z_index = -2
 position = Vector2(0, 15)
 scale = Vector2(0.1, 0.06)
 texture = ExtResource("7_31e7v")
+
+[node name="DropTowerSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_6veqr")
+volume_db = -15.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1722,7 +1722,7 @@ z_index = 1
 rotates = false
 loop = false
 script = ExtResource("1_fna7a")
-speed = 10
+speed = 15
 food_amount = NodePath("FoodBubble/FoodAmount")
 container = NodePath("FoodBubble/VBoxContainer")
 

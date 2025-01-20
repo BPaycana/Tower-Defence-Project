@@ -32,7 +32,7 @@ var current_stars: int
 
 func _ready() -> void:
 	
-	tv.get_child(0).text = "[color=gray][wave amp=10.0 freq=10.0 connected=1]" + "  x " + str(customers_in_wave)
+	tv.get_child(0).text = "[color=gray][wave amp=10.0 freq=10.0 connected=1]" + " x " + str(customers_in_wave)
 	current_stars = max_stars
 	star_container.set_max_stars(max_stars)
 	star_container.update_stars(current_stars)
@@ -40,6 +40,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if current_stars > 0 && wave_number >= 2:
 		congratulations.set_visible(true)
+		Engine.time_scale = 0
 
 func start_wave():
 	
@@ -56,7 +57,7 @@ func start_wave():
 func retrieve_wave_data():
 	var new_wave_data = level_data.wave[wave_number]
 	customers_in_wave = new_wave_data.customers.size()
-	tv.get_child(0).text = "[color=gray][wave amp=10.0 freq=10.0 connected=1]" + "  x " + str(customers_in_wave)
+	tv.get_child(0).text = "[color=gray][wave amp=10.0 freq=10.0 connected=1]" + " x " + str(customers_in_wave)
 	return new_wave_data
 
 func decide_path() -> Path2D:
@@ -76,6 +77,7 @@ func customer_unsatisfied():
 	star_container.update_stars(current_stars)
 	if current_stars <= 0:
 		game_over.set_visible(true)
+		Engine.time_scale = 0
 
 func _on_button_button_down() -> void:
 	if wave_number < level_data.wave.size():
@@ -83,4 +85,5 @@ func _on_button_button_down() -> void:
 		start_wave()
 
 func _on_button_pressed() -> void:
+	Engine.time_scale = 1
 	get_tree().reload_current_scene()
