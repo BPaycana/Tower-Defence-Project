@@ -75,7 +75,7 @@ func launch(direction: Vector2, speed: float, angle: float) -> void:
 
 func land():
 	# Called when the tower lands
-	ready_to_fire = true  # Reset firing state
+	 # Reset firing state
 	drop_tower_sfx.play()
 
 func turn():

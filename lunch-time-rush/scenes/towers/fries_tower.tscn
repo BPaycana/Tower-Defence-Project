@@ -82,6 +82,7 @@ position = Vector2(0, -6)
 position = Vector2(10, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/Marker2D"]
+visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_7ifwq")
 

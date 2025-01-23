@@ -13,7 +13,7 @@ extends Node2D
 
 @export_category("UI")
 @export var star_container: HBoxContainer
-@onready var button: Button = $CanvasLayer/Button
+@onready var button: TextureButton = $CanvasLayer/Button
 @onready var game_over: Control = $CanvasLayer/GameOver
 @onready var congratulations: Control = $CanvasLayer/Congratulations
 

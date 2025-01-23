@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://pauffmrlh7xi"]
+
+[ext_resource type="Texture2D" uid="uid://cs71fdr8dqr0j" path="res://scenes/menus/Spritesheet_UI_Flat.png" id="1_586u4"]
+[ext_resource type="Texture2D" uid="uid://cg37smhsp6hvj" path="res://scenes/menus/ControlTutorial.png" id="2_guueb"]
+[ext_resource type="FontFile" uid="uid://culsr0ovkxt56" path="res://fonts/m5x7.ttf" id="2_o7w73"]
+[ext_resource type="Texture2D" uid="uid://cfw15ktmuonho" path="res://scenes/menus/ObjectiveTutorial1.png" id="3_byywc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erhx4"]
+atlas = ExtResource("1_586u4")
+region = Rect2(224, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvrch"]
+atlas = ExtResource("1_586u4")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no0gt"]
+atlas = ExtResource("1_586u4")
+region = Rect2(128, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gemx"]
+atlas = ExtResource("1_586u4")
+region = Rect2(128, 160, 32, 32)
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_erhx4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Controls" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(344, 328)
+scale = Vector2(2, 2)
+texture = ExtResource("2_guueb")
+
+[node name="Objective" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(952, 360)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("3_byywc")
+
+[node name="Button" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Return" type="TextureButton" parent="MarginContainer/Button"]
+custom_minimum_size = Vector2(350, 75)
+offset_left = 118.0
+offset_top = 534.0
+offset_right = 468.0
+offset_bottom = 609.0
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_kvrch")
+texture_pressed = SubResource("AtlasTexture_no0gt")
+texture_hover = SubResource("AtlasTexture_6gemx")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/Button/Return"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_o7w73")
+theme_override_font_sizes/font_size = 64
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
