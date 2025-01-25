@@ -65,6 +65,7 @@ layout_mode = 2
 
 [node name="Return" type="TextureButton" parent="MarginContainer/Button"]
 custom_minimum_size = Vector2(350, 75)
+layout_mode = 0
 offset_left = 118.0
 offset_top = 534.0
 offset_right = 468.0

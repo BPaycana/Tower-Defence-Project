@@ -24,6 +24,7 @@ var skin: int
 var direction
 var rounded_direction
 var anim_finished = true
+var is_hurt = false      # Tracks if the customer is in a hurt state
 
 var food_type = FoodType
 var has_drink = false
@@ -40,49 +41,74 @@ func _ready() -> void:
 	skin = int(randf_range(1, 3))
 	
 func _physics_process(delta: float) -> void:
+
+		
 	move(delta)
 	if progress_ratio >= 1:
 		delete()
 
 func move(delta):
+	
 	set_progress(get_progress() + speed * delta)
 	
 	var old_pos = position
 	await(get_tree().create_timer(0.1).timeout)
 	direction = position - old_pos
 	rounded_direction = round_direction(direction)
+	update_animation(rounded_direction)
 	
-	match rounded_direction:
-		Vector2.LEFT:
-			if anim_finished:
-				sprites.play("walk_left" + str(skin))
-		Vector2.RIGHT:
-			if anim_finished:
-				sprites.play("walk_right" + str(skin))
-		Vector2.DOWN:
-			if anim_finished:
-				sprites.play("walk_down" + str(skin))
-		Vector2.UP:
-			if anim_finished:
-				sprites.play("walk_up" + str(skin))
-		Vector2.DOWN + Vector2.LEFT:
-			if anim_finished:
-				sprites.play("walk_down" + str(skin))
-		Vector2.DOWN + Vector2.RIGHT:
-			if anim_finished:
-				sprites.play("walk_down" + str(skin))
-		Vector2.UP + Vector2.LEFT:
-			if anim_finished:
-				sprites.play("walk_up" + str(skin))
-		Vector2.UP + Vector2.RIGHT:
-			if anim_finished:
-				sprites.play("walk_up" + str(skin))
+	
+	#match rounded_direction:
+		#Vector2.LEFT:
+			#if anim_finished:
+				#sprites.play("walk_left" + str(skin))
+		#Vector2.RIGHT:
+			#if anim_finished:
+				#sprites.play("walk_right" + str(skin))
+		#Vector2.DOWN:
+			#if anim_finished:
+				#sprites.play("walk_down" + str(skin))
+		#Vector2.UP:
+			#if anim_finished:
+				#sprites.play("walk_up" + str(skin))
+		#Vector2.DOWN + Vector2.LEFT:
+			#if anim_finished:
+				#sprites.play("walk_down" + str(skin))
+		#Vector2.DOWN + Vector2.RIGHT:
+			#if anim_finished:
+				#sprites.play("walk_down" + str(skin))
+		#Vector2.UP + Vector2.LEFT:
+			#if anim_finished:
+				#sprites.play("walk_up" + str(skin))
+		#Vector2.UP + Vector2.RIGHT:
+			#if anim_finished:
+				#sprites.play("walk_up" + str(skin))
 
 func round_direction(_direction: Vector2) -> Vector2:
 	var x = direction.x
 	var y = direction.y
 
 	return Vector2(1 if x > 0 else -1 if x < 0 else 0, 1 if y > 0 else -1 if y < 0 else 0)
+
+func update_animation(_direction: Vector2):
+	
+	if is_hurt: 
+		return # Skip updating walk animations if in the hurt state
+
+	match _direction:
+		Vector2.LEFT:
+			sprites.play("walk_left" + str(skin))
+		Vector2.RIGHT:
+			sprites.play("walk_right" + str(skin))
+		Vector2.UP:
+			sprites.play("walk_up" + str(skin))
+		Vector2.DOWN:
+			sprites.play("walk_down" + str(skin))
+			
+		#Vector2.DOWN + Vector2.LEFT, Vector2.DOWN + Vector2.RIGHT:
+			#sprites.play("walk_down" + str(skin))
+		#Vector2.UP + Vector2.RIGHT, Vector2.UP + Vector2.RIGHT:
+			#sprites.play("walk_up" + str(skin))
 
 func on_hit(_food_type, _damage):
 	if !is_satisfied:
@@ -129,42 +155,41 @@ func delete():
 	queue_free()
 
 func hurt_anim():
-
+	is_hurt = true
 	anim_finished = false
 
 	match rounded_direction.normalized():
 		Vector2.LEFT:
 			sprites.play("hurt_left" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
 		Vector2.RIGHT:
 			sprites.play("hurt_right" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
 		Vector2.DOWN:
 			sprites.play("hurt_down" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
 		Vector2.UP:
 			sprites.play("hurt_up" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
 		Vector2.DOWN + Vector2.LEFT:
 			sprites.play("hurt_down" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
 		Vector2.DOWN + Vector2.RIGHT:
 			sprites.play("hurt_down" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
 		Vector2.UP + Vector2.LEFT:
 			sprites.play("hurt_up" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
 		Vector2.UP + Vector2.RIGHT:
 			sprites.play("hurt_up" + str(skin))
-			await sprites.animation_finished
-			anim_finished = true
+			
+
+	await sprites.animation_finished
+	anim_finished = true
+	is_hurt = false
+	
+	# Resume walking animation based on the last direction
+	update_animation(rounded_direction)
 
 func add_food_to_container():
 	if food_type == null:

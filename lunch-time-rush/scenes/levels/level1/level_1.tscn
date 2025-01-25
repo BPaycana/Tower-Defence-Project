@@ -19,13 +19,13 @@
 
 [sub_resource type="Curve2D" id="Curve2D_fx7ra"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -232, -40, 0, 0, 0, 0, -120, -40, 0, 0, 0, 0, -120, 72, 0, 0, 0, 0, -232, 72)
+"points": PackedVector2Array(0, 0, 0, 0, -232, -40, 0, 0, 0, 0, -128, -40, 0, 0, 0, 0, -128, 72, 0, 0, 0, 0, -232, 72)
 }
 point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_12y22"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 232, -40, 0, 0, 0, 0, 120, -40, 0, 0, 0, 0, 120, 72, 0, 0, 0, 0, 232, 72)
+"points": PackedVector2Array(0, 0, 0, 0, 232, -40, 0, 0, 0, 0, 128, -40, 0, 0, 0, 0, 128, 72, 0, 0, 0, 0, 232, 72)
 }
 point_count = 4
 
